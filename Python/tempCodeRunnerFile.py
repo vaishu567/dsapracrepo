@@ -1,6 +1,5 @@
-def name(n):
-    if n==0:
-        return None
-    print("vaishnavi")
-    return name(n-1)
-print(name(5))
+def fact(n):
+    if n==1:
+        return 1
+    return n*fact(n-1)
+print(fact(4))
