@@ -99,4 +99,38 @@ def rev(arr,i,j):
 arr=[2,3,6,8,4]
 n=len(arr)
 print(rev(arr,0,n-1))
+
+# check if string is palindrome:
+def palindrome(s,i,j):
+    if i>=j:
+        return True
+    if s[i]!=s[j]:
+        return False
+    return palindrome(s,i+1,j-1)
+s="madam"
+n=len(s)
+print(palindrome(s,0,n-1))
+
+# fibonacci:
+def fibonacci(n):
+    if n==0 or n==1:
+        return n
+    last=fibonacci(n-1)
+    seclast= fibonacci(n-2)
+    
+    return last+seclast
+print(fibonacci(4))
+
+
+# def has():
+#     a=[0 for i in range(10000000)]
+#     return a
+# print(has())
+
+# print(ord('b')-ord('a'))
+
+
+
+
+        
     

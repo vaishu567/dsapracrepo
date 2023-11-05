@@ -1,5 +1,8 @@
-def fact(n):
-    if n==1:
-        return 1
-    return n*fact(n-1)
-print(fact(4))
+def noofchars(s,t):
+    d=[0 for i in range(256)]
+    for i in s:
+        d[ord(i)]+=1
+    return d[ord(t)]
+s="vaishnavi$%%$@%%$^"
+t='%'
+print(noofchars(s,t))
