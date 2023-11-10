@@ -47,6 +47,8 @@ arr1=[14,9,15,12,6,8,13]
 print(insertionSort(arr))
 print(insertionSort(arr1))
 
+
+# mergeSort:
 def mergeSort(arr,low,high):
     if low>=high:
         return arr
@@ -79,3 +81,30 @@ arr=[3,1,2,4,1,5,2,6,4]
 low=0
 high=len(arr)-1
 print(mergeSort(arr,low,high))
+
+
+# quick sort:
+def quickSort(arr,low,high):
+    if(low<high):
+        pI=pivotF(arr,low,high)
+        quickSort(arr,low,pI-1)
+        quickSort(arr,pI+1,high)
+    return arr
+
+def pivotF(arr,low,high):
+    pivot=arr[low]
+    i=low
+    j=high
+    while (i<j):
+        while(arr[i]<=pivot and i<=high-1):
+            i+=1
+        while(arr[j]>pivot and j>=low+1):
+            j-=1
+        if(i<j):
+            arr[i],arr[j]=arr[j],arr[i]
+    arr[low],arr[j]=arr[j],arr[low]
+    return j
+arr=[4,6,2,5,7,9,1,3]
+low=0
+high=len(arr)-1
+print(quickSort(arr,low,high))
