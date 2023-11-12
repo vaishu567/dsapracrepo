@@ -27,3 +27,22 @@ arr=[8,-9,0,5,45,34,23,-89]
 arr1=[1,4,4,4,4,4,4,4,4,4,4,4,4]
 
 print(secondlargest(arr1))
+
+# frequency of most frequent element:
+# here the array should be sorted first and then using sliding window we calculate current sum of array
+# and then simultaneously we check if the cursum + k == arr[end-1]*end-start
+def maxFrequency(nums, k):
+    i=0
+    j=0
+    res=1
+    n=len(nums)
+    nums=sorted(nums)
+    curs=0
+    while j<n:
+        curs+=nums[j]
+        j+=1
+        if (curs+k<nums[j-1]*(j-i)):
+            curs-=nums[i]
+            i+=1
+        res=max(res,j-i)
+    return res
