@@ -46,3 +46,59 @@ def maxFrequency(nums, k):
             i+=1
         res=max(res,j-i)
     return res
+# movezeroesto end:
+def moveZeros(n: int,  a: [int]) -> [int]:
+    # Write your code here.
+    j=0
+    k=0
+    for i in range(n):
+        if a[i]==0:
+            j=i
+            k=j+1
+            break
+    while k<n and j<n:
+        if a[k]!=0:
+            a[k],a[j]=a[j],a[k]
+            k+=1
+            j+=1
+        else:
+            k+=1
+    return a  
+
+def findArrayIntersection(arr: list, n: int, brr: list, m: int):
+    # Write your code here
+    # Return a list containing all the common elements in arr and brr.
+    i=0
+    j=0
+    new=[]
+    while i<n and j<m:
+        if arr[i]==brr[j]:
+            new.append(arr[i])
+            i+=1
+            j+=1
+        elif arr[i]<brr[j]:
+            i+=1
+        else:
+            j+=1
+    return new
+
+# this missing letter can be done in 2 optimal approaches:
+# XOR can be used when in array 0 is not included.
+def missingNumber( nums):
+    n=len(nums)
+    # sumap=(n*(n+1))//2
+    # sumi=sum(nums)
+    # return sumap-sumi        
+    xor1=0
+    xor2=0
+    for i in range(n):
+        xor1=xor1^nums[i]
+        xor2=xor2^(i+1)
+    xor2=xor2^(n+1)
+    return xor1^xor2
+nums=[1,2,4,5]
+print(missingNumber(nums))
+
+print(1^2^4^5)
+print(1^2^3^4^5)
+print(1^2)
