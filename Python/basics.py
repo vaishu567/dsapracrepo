@@ -102,3 +102,13 @@ print(missingNumber(nums))
 print(1^2^4^5)
 print(1^2^3^4^5)
 print(1^2)
+
+
+# find the single element optimal approach:
+def getSingleElement(arr : List[int]) -> int:
+    # Write your code here.
+    n=len(arr)
+    xor=0
+    for i in range(n):
+        xor=xor^arr[i]
+    return xor
