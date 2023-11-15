@@ -105,10 +105,83 @@ print(1^2)
 
 
 # find the single element optimal approach:
-def getSingleElement(arr : List[int]) -> int:
+def getSingleElement(arr ):
     # Write your code here.
     n=len(arr)
     xor=0
     for i in range(n):
         xor=xor^arr[i]
     return xor
+
+def longestSubarrayWithSumK(arr, k):
+    # Write your code here
+    sum=0
+    n=len(arr)
+    i=0
+    maxi=0
+    for j in range(n):
+        sum+=arr[j]
+        if sum>k:
+            sum-=arr[i]
+            i+=1
+        if sum==k:
+            maxi=max(maxi,(j-i+1))      
+    return maxi
+arr=[38289 ,33170 ,1859 ,23863, 45658, 24408, 38353 ,21761, 46411, 41237 ,46956, 33613, 49349, 26026, 11031, 19190 ,45358 ,32843, 7054, 14184, 46050, 19610 ,12625 ,14179 ,4066 ,6866, 9996, 34864, 26222, 1262 ,27512 ,40674 ,9793, 14583 ,34325, 23768, 40373, 10787, 23397, 2298, 42342 ,26340, 19552, 1612 ,7014, 44006, 18885 ,14427 ,3821, 41595, 40575 ,26085, 34594, 49448, 41457, 37147, 15003, 18172 ,6585 ,29405 ,11315, 29488 ,26525, 40889 ,27485, 31122, 29281, 8787, 3008 ,41470, 34402, 9184, 25736]
+k=526314
+print(longestSubarrayWithSumK(arr,k))
+
+
+def getLongestSubarray(nums, k):
+    # Write your code here
+    sum=0
+    maxi=0
+    n=len(nums)
+    i=0
+    for j in range(n):
+        sum+=nums[j]
+        if k>0:
+            while sum>k and i<n and nums[i]!=0:
+
+                sum-=nums[i]
+                i+=1
+            if sum==k:
+                maxi=max(maxi,j-i+1)
+        else:
+            if sum==k:
+                maxi=max(maxi,j-i+1)
+
+    return maxi
+k= -2
+nums=[-10, 8 ,2, -2]
+print(getLongestSubarray(nums,k))
+
+# subarray with sum=k containing 0,-ve's and +ve's:
+def getLongestSubarray(nums: [int], k: int) -> int:
+    # Write your code here
+    n = len(nums) # size of the array.
+
+    preSumMap = {}
+    Sum = 0
+    maxLen = 0
+    for i in range(n):
+        # calculate the prefix sum till index i:
+        Sum += nums[i]
+
+        # if the sum = k, update the maxLen:
+        if Sum == k:
+            maxLen = max(maxLen, i + 1)
+
+        # calculate the sum of remaining part i.e. x-k:
+        rem = Sum - k
+
+        # Calculate the length and update maxLen:
+        if rem in preSumMap:
+            length = i - preSumMap[rem]
+            maxLen = max(maxLen, length)
+
+        # Finally, update the map checking the conditions:
+        if Sum not in preSumMap:
+            preSumMap[Sum] = i
+
+    return int(maxLen)

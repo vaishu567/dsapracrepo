@@ -1,14 +1,23 @@
-def missingNumber( nums):
+def getLongestSubarray(nums, k):
+    # Write your code here
+    sum=0
+    maxi=0
     n=len(nums)
-    # sumap=(n*(n+1))//2
-    # sumi=sum(nums)
-    # return sumap-sumi        
-    xor1=0
-    xor2=0
-    for i in range(n):
-        xor1=xor1^nums[i]
-        xor2=xor2^(i+1)
-    xor2=xor2^(n+1)
-    return xor1^xor2
-nums=[1,2,4,5]
-print(missingNumber(nums))
+    i=0
+    for j in range(n):
+        sum+=nums[j]
+        if k>0:
+            while sum>k and i<n and nums[i]!=0:
+
+                sum-=nums[i]
+                i+=1
+            if sum==k:
+                maxi=max(maxi,j-i+1)
+        else:
+            if sum==k:
+                maxi=max(maxi,j-i+1)
+
+    return maxi
+k= -2
+nums=[-10, 8 ,2, -2]
+print(getLongestSubarray(nums,k))
