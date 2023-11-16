@@ -47,3 +47,71 @@ def getLongestSubarray(nums: [int], k: int) -> int:
             preSumMap[Sum] = i
 
     return int(maxLen)
+
+# nextpermutations:
+
+def nextGreaterPermutation(a):
+    # Write your code here.
+    n=len(a)
+    index=-1
+    for i in range(n-2,-1,-1):
+        if a[i]<a[i+1]:
+            index=i
+            break
+    if index==-1:
+        return rev(a,0,n-1)
+    for i in range(n-1,index,-1):
+        if a[i]>a[index]:
+            a[i],a[index]=a[index],a[i]
+            break
+    a=rev(a,index+1,n-1)
+    return a
+def rev(arr,i,j):
+    while i<j:
+        arr[i],arr[j]=arr[j],arr[i]
+        i+=1
+        j-=1
+    return arr
+
+
+def zeroMatrix(matrix, n, m):
+    # Write your code here.
+
+    # this is better solution:
+    # row=[0 for i in range(n)]
+    # col=[0 for i in range(m)]
+    # for i in range(n):
+    #     for j in range(m):
+    #         if matrix[i][j]==0:
+    #             row[i]=1
+    #             col[j]=1
+    # for i in range(n):
+    #     for j in range(m):
+    #         if row[i] or col[j]:
+    #             matrix[i][j]=0
+    # return matrix
+    # optimal:
+    col0=1
+    for i in range(n):
+        for j in range(m):
+            if matrix[i][j]==0:
+                # mark i-th row
+                matrix[i][0]=0
+                # mark j-th col
+                if j!=0:
+                    matrix[0][j]=0
+                else:
+                    col0=0
+    for i in range(1,n):
+        for j in range(1,m):
+            if matrix[i][j]!=0:
+                # check for col and row
+                if matrix[0][j]==0 or matrix[i][0]==0:
+                    matrix[i][j]=0
+    if matrix[0][0]==0:
+        for j in range(m):
+            matrix[0][j]=0
+    if col0==0:
+        for i in range(n):
+            matrix[i][0]=0
+    return matrix
