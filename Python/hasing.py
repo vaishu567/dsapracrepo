@@ -74,44 +74,52 @@ def rev(arr,i,j):
     return arr
 
 
-def zeroMatrix(matrix, n, m):
-    # Write your code here.
+arr=[1, 6, 11, 16, 21, 31]
+xor=0
+for i in range(len(arr)):
+    xor=xor^arr[i]
+    print(xor)
+print(xor)
 
-    # this is better solution:
-    # row=[0 for i in range(n)]
-    # col=[0 for i in range(m)]
+
+
+arr=[1,3,4,6,8,7,5,2]
+arr=[1,3,4,7,8,6,5,2]
+
+
+def majorityElement(v):
+    # Write your code here
+    # bruteforce approach:
+    # t.c=O(n^2)
+    # n=len(v)
+    # mal=[]
     # for i in range(n):
-    #     for j in range(m):
-    #         if matrix[i][j]==0:
-    #             row[i]=1
-    #             col[j]=1
+    #     curcount=1
+    #     curel=v[i]
+    #     if curel!=mal[-1] or len(mal)==0:
+    #         for j in range(i+1,n):
+    #             if v[j]==curel:
+    #                 curcount+=1
+    #         if curcount>(n//3):
+    #             mal.append(curel)
+    # return mal
+    # better approach:
+    # d={}
     # for i in range(n):
-    #     for j in range(m):
-    #         if row[i] or col[j]:
-    #             matrix[i][j]=0
-    # return matrix
-    # optimal:
-    col0=1
-    for i in range(n):
-        for j in range(m):
-            if matrix[i][j]==0:
-                # mark i-th row
-                matrix[i][0]=0
-                # mark j-th col
-                if j!=0:
-                    matrix[0][j]=0
-                else:
-                    col0=0
-    for i in range(1,n):
-        for j in range(1,m):
-            if matrix[i][j]!=0:
-                # check for col and row
-                if matrix[0][j]==0 or matrix[i][0]==0:
-                    matrix[i][j]=0
-    if matrix[0][0]==0:
-        for j in range(m):
-            matrix[0][j]=0
-    if col0==0:
-        for i in range(n):
-            matrix[i][0]=0
-    return matrix
+    #     if v[i] in d:
+    #         d[v[i]]+=1
+    #     else:
+    #         d[v[i]]=1
+    # for i,k in d.items():
+    #     if k>(n//3):
+    #         mal.append(i)
+    # return mal
+    pass
+v=[1,1,1,2,2,2]
+print(majorityElement(v))
+
+print(3>(6//3))
+
+
+
+

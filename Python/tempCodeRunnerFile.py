@@ -1,23 +1,21 @@
-def getLongestSubarray(nums, k):
+def majorityElement(v):
     # Write your code here
-    sum=0
-    maxi=0
-    n=len(nums)
-    i=0
-    for j in range(n):
-        sum+=nums[j]
-        if k>0:
-            while sum>k and i<n and nums[i]!=0:
+    # bruteforce approach:
+    n=len(v)
+    mal=[]
+    maxel=0
+    for i in range(n):
+        curcount=1
+        maxi=-1000000
+        curel=v[i]
+        for j in range(i+1,n):
+            if v[j]==curel:
+                curcount+=1
+        maxi=max(maxi,curcount)
+        maxel=v[i]
+        if maxi>(n//3):
+            mal.append(maxel)
 
-                sum-=nums[i]
-                i+=1
-            if sum==k:
-                maxi=max(maxi,j-i+1)
-        else:
-            if sum==k:
-                maxi=max(maxi,j-i+1)
-
-    return maxi
-k= -2
-nums=[-10, 8 ,2, -2]
-print(getLongestSubarray(nums,k))
+    return mal
+v=[1,1,1,2,2,2]
+print(majorityElement(v))
