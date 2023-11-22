@@ -120,6 +120,13 @@ print(majorityElement(v))
 
 print(3>(6//3))
 
+# set doesn't take lists as values coz set takes unique values and if lists are taken as values they can be mutable but tupels are taken as values since tuples are immutable
+
+# 13
+# -18 -1 -44 -48 -9 -16 -36 -13 29 17 -12 9 -49 
+
+
+
 
 
 

@@ -185,3 +185,4 @@ def getLongestSubarray(nums: [int], k: int) -> int:
             preSumMap[Sum] = i
 
     return int(maxLen)
+
