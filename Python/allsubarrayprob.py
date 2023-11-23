@@ -83,31 +83,40 @@ def getLongestZeroSumSubarrayLength(arr) :
 
 
 
+# count subarray with xor k:
 
-
-def subarraysWithSumK(a, b) :
+def subarraysWithXorK(a: [int], b: int) -> int:
     # Write your code here
     xor=0
     n=len(a)
     count=0
-    d={}
-    for i in range(n):
-        if a[i]==b:
-            count+=1
+    d={0:1}
     for i in range(n):
         xor=xor^a[i]
-        if xor==b:
-            count+=1
-        if xor in d:
-            count+=d[xor]
-            d[xor]+=1
-        else:
+        x=xor^b
+        if x in d:
+            count+=d[x]
+        if xor not in d:
             d[xor]=1
-        
-            
+        else:
+            d[xor]+=1
     return count
-print(0^1^2^3^3)
 # 1 2 3 3
+def ninjaGram(str):
 
+    # Write your Code Here.
+    # Return a boolean variable 'True' or 'False' denoting the answer
+    d={i:0 for i in range(26)}
+    for i in str:
+        x=ord('a')-ord(i)
+        if x not in d:
+            d[x]=1
+        d[x]+=1
+    
+    # for k,v in d.items():
+    #     if v==0:
+    #         return 'NO'
+    # return 'YES'
+print(ninjaGram('toosmallword'))
 
 

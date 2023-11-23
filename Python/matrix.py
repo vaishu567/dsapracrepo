@@ -90,3 +90,26 @@ def zigzagOrder( mat):
                 l.append(mat[i][j])
                 j-=1
     return l
+
+
+def findDiagonalOrder(nums):
+    newl=[]
+    n=len(nums)
+    # m=len(nums[0])
+    groups={}
+    for i in range(2*n-1):
+        groups[i]=[]
+    for i in range(n-1,-1,-1):
+        for j in range(len(nums[i])):
+            diagonal= i+j
+            groups[diagonal].append(nums[i][j])
+    curr=0
+    while curr in groups:
+        newl.extend(groups[curr])
+        curr+=1
+    return newl
+    # for curr in groups:
+    #     newl.extend(groups[curr])
+    # return groups
+nums = [[1,2,3,4,5],[6,7],[8],[9,10,11],[12,13,14,15,16]]
+print(findDiagonalOrder(nums))
