@@ -1,5 +1,5 @@
 # dsapracrepo
-This repository is for DSA practice using Python and Java. I am learning from Strivers Playlist.
+This repository is for DSA practice using Python and Java for 60 days. I am learning from Strivers Playlist.
 <br/>
 <p>day1:basics of Python, time and space complexity.</p>
 <p>day2:basic array problems, and mathematics basics.</p>
