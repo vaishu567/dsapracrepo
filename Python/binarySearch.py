@@ -200,4 +200,45 @@ def searchRange( nums, t) :
             s=mid+1
     return [first,last]
 
+# ////////////////////////////////////////////////////
+
+# count number of occurences of a given element:
+def searchRange(nums, t) :
+    first=-1
+    last=-1
+    n=len(nums)
+    # for finding first occurance:
+    s=0
+    e=n-1
+    while s<=e:
+        mid=(s+e)//2
+        if nums[mid]==t:
+            first=mid
+            e=mid-1
+        elif nums[mid]>t:
+            e=mid-1
+        else:
+            s=mid+1
+    # for finding last occurance:
+    s=0
+    e=n-1
+    while s<=e:
+        mid=(s+e)//2
+        if nums[mid]==t:
+            last=mid
+            s=mid+1
+        elif nums[mid]>t:
+            e=mid-1
+        else:
+            s=mid+1
+    return [first,last]
+def count(arr: [int], n: int, x: int) -> int:
+    # Your code goes here
+    [x,y]=searchRange(arr,x)
+    if x==-1:
+        return 0
+    return y-x+1
+
+# ///////////////////////////////////////////////
+
         

@@ -1,6 +1,6 @@
 # spiral matrix:
 
-def spiralMatrix(mat : List[List[int]]) -> List[int]:
+def spiralMatrix(mat):
     # Write your code here.
     n=len(mat)
     m=len(mat[0])
@@ -141,7 +141,7 @@ def pascalTriangle(n):
 
 # optimised version:
 # this is optimised code with timecomplextiy near about O(n^2)
-def pascalTriangle(n : int) -> List[List[int]]:
+def pascalTriangle(n):
     # Write your code here.
     ansl=[]
     for row in range(1,n+1):

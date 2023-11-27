@@ -36,9 +36,9 @@ def longs(arr,k):
 arr=[-50,0,52]
 print(longs(arr,2))
 
-a=[1,2,3,2]
-b=2
-xor=0
+# a=[1,2,3,2]
+# b=2
+# xor=0
 
 
 # subarrays with sum 0:
@@ -59,7 +59,7 @@ def countsubarrays(arr):
 
 
 # longest subarray with sum 0:
-def getLongestZeroSumSubarrayLength(arr) :
+def getLongestZeroSumSubarrayLength(arr):
     # Write your code here.
     d={}
     n=len(arr)
@@ -85,7 +85,7 @@ def getLongestZeroSumSubarrayLength(arr) :
 
 # count subarray with xor k:
 
-def subarraysWithXorK(a: [int], b: int) -> int:
+def subarraysWithXorK(a, b):
     # Write your code here
     xor=0
     n=len(a)
@@ -105,7 +105,7 @@ def subarraysWithXorK(a: [int], b: int) -> int:
 
 
 # maxproduct subarray:
-def subarrayWithMaxProduct(arr : List[int]) -> int:
+def subarrayWithMaxProduct(arr):
     # Write your code here.
     pref=1
     suf=1
