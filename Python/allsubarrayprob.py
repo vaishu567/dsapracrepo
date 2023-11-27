@@ -102,21 +102,26 @@ def subarraysWithXorK(a: [int], b: int) -> int:
             d[xor]+=1
     return count
 # 1 2 3 3
-def ninjaGram(str):
 
-    # Write your Code Here.
-    # Return a boolean variable 'True' or 'False' denoting the answer
-    d={i:0 for i in range(26)}
-    for i in str:
-        x=ord('a')-ord(i)
-        if x not in d:
-            d[x]=1
-        d[x]+=1
-    
-    # for k,v in d.items():
-    #     if v==0:
-    #         return 'NO'
-    # return 'YES'
-print(ninjaGram('toosmallword'))
+
+# maxproduct subarray:
+def subarrayWithMaxProduct(arr : List[int]) -> int:
+    # Write your code here.
+    pref=1
+    suf=1
+    maxi=-100000000
+    n=len(arr)
+    for i in range(n):
+        if pref==0:
+            pref=1
+        if suf==0:
+            suf=1
+        pref=pref*arr[i]
+        suf=suf*arr[n-i-1]
+        maxi=max(maxi,max(suf,pref))
+    return maxi
+
+
+
 
 
