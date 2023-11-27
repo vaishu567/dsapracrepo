@@ -114,9 +114,11 @@ def findDiagonalOrder(nums):
 nums = [[1,2,3,4,5],[6,7],[8],[9,10,11],[12,13,14,15,16]]
 print(findDiagonalOrder(nums))
 
+
+
+# pascaltriangle:
 # ///////////////////////////////////////////////////////
 # this is brute force approach using formula function with timecomplexity of O(nxnxr)
-# pascaltriangle:
 # this is optimised function for nCr formula:
 def funNcR(n,r):
     res=1
@@ -136,4 +138,23 @@ def pascalTriangle(n):
         ans.append(temp)
     return ans
 
+
+# optimised version:
+# this is optimised code with timecomplextiy near about O(n^2)
+def pascalTriangle(n : int) -> List[List[int]]:
+    # Write your code here.
+    ansl=[]
+    for row in range(1,n+1):
+        temp=[]
+        ans=1
+        temp.append(ans)
+        for col in range(1,row):
+            ans=ans*(row-col)
+            ans=ans//col
+            temp.append(ans)
+        ansl.append(temp)
+    return ansl
+
 # ///////////////////////////////////////////
+
+
