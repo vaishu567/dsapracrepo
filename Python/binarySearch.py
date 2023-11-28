@@ -241,4 +241,88 @@ def count(arr: [int], n: int, x: int) -> int:
 
 # ///////////////////////////////////////////////
 
-        
+# search in rotated sorted array-I:
+def binarySearch(arr,s,e,k):
+    while s<=e:
+        mid=(s+e)//2
+        if arr[mid]>k:
+            e=mid-1
+        elif arr[mid]<k:
+            s=mid+1
+        else:
+            return mid
+    return -1
+def search(arr, n, k):
+
+    # Write your code here
+    i=0
+    pivot=0
+    while i<n-1:
+        if arr[i]>arr[i+1]:
+            pivot=i
+            break
+        else:
+            i+=1
+    ans=binarySearch(arr,0,pivot,k)
+    ans2=binarySearch(arr,pivot+1,n-1,k)
+    if ans==-1:
+        return ans2
+    elif ans2==-1:
+        return ans
+    return -1
+
+# 2nd approach:
+def search(arr, n, k):
+    s=0
+    e=n-1
+    while s<=e:
+        mid=(s+e)//2
+        if arr[mid]==k:
+            return mid
+        # check for left sorted:
+        if arr[s]<=arr[mid]:
+            if arr[s]<=k and k<=arr[mid]:
+                e=mid-1
+            else:
+                s=mid+1
+        # check for right sorted:
+        else:
+            if arr[mid]<=k and k<=arr[e]:
+                s=mid+1
+            else:
+                e=mid-1
+    return -1
+# ///////////////////////////////////////////////////////////////////
+
+
+# Search in Rotated Sorted Array-II:
+# approach-1:
+def binarySearch(arr,s,e,k):
+    while s<=e:
+        mid=(s+e)//2
+        if arr[mid]>k:
+            e=mid-1
+        elif arr[mid]<k:
+            s=mid+1
+        else:
+            return mid
+    return -1
+
+def searchInARotatedSortedArrayII(arr: List[int], k : int) -> bool:
+    # Write your code here.
+    n=len(arr)
+    i=0
+    pivot=0
+    while i<n-1:
+        if arr[i]>arr[i+1]:
+            pivot=i
+            break
+        else:
+            i+=1
+    ans=binarySearch(arr,0,pivot,k)
+    ans2=binarySearch(arr,pivot+1,n-1,k)
+    if ans!=-1 or ans2!=-1 :
+        return True
+    return False
+
+# approach-2:
