@@ -308,7 +308,7 @@ def binarySearch(arr,s,e,k):
             return mid
     return -1
 
-def searchInARotatedSortedArrayII(arr: List[int], k : int) -> bool:
+def searchInARotatedSortedArrayII(arr, k ):
     # Write your code here.
     n=len(arr)
     i=0
@@ -326,3 +326,68 @@ def searchInARotatedSortedArrayII(arr: List[int], k : int) -> bool:
     return False
 
 # approach-2:
+
+def searchInARotatedSortedArrayII(arr, k):
+    # Write your code here.
+    n=len(arr)
+    s=0
+    e=n-1
+    while s<=e:
+        mid=(s+e)//2
+        if arr[mid]==k:
+            return True
+        # check for mid==high==low:
+        if arr[mid]==arr[s] and arr[mid]==arr[e]:
+            s+=1
+            e-=1
+            continue
+        # check for left sorted:
+        if arr[s]<=arr[mid]:
+            if arr[s]<=k and k<=arr[mid]:
+                e=mid-1
+            else:
+                s=mid+1
+        # check for right sorted:
+        else:
+            if arr[mid]<=k and k<=arr[e]:
+                s=mid+1
+            else:
+                e=mid-1
+    return False
+
+
+
+
+
+
+# minimum in rotated sorted array:
+# def findMin(arr):
+    # Write your code here.
+    # bruteforce:
+    # i=0
+    # n=len(arr)
+    # pivot=0
+    # while i<n-1:
+    #     if arr[i]>arr[i+1]:
+    #         pivot=i+1
+    #         break
+    #     else:
+    #         i+=1
+    # return arr[pivot]
+    # optimal:
+def findMin( nums):
+    n=len(nums)
+    s=0
+    ans=100000000
+    e=n-1
+    while s<=e:
+        mid=(s+e)//2
+        # check for left sorted:
+        if nums[s]<=nums[mid]:
+            ans=min(ans,nums[s])
+            s=mid+1
+        # check for right sorted:
+        else:
+            ans=min(ans,nums[mid])
+            e=mid-1
+    return ans
