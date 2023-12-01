@@ -382,6 +382,9 @@ def findMin( nums):
     e=n-1
     while s<=e:
         mid=(s+e)//2
+        if nums[s]<=nums[e]:
+            ans=min(ans,nums[s])
+            break
         # check for left sorted:
         if nums[s]<=nums[mid]:
             ans=min(ans,nums[s])
@@ -391,3 +394,243 @@ def findMin( nums):
             ans=min(ans,nums[mid])
             e=mid-1
     return ans
+
+# find number of rotations in array:
+def findKRotation(arr):
+    # Write your code here.
+    n=len(arr)
+    s=0
+    e=n-1
+    ans=1000000000
+    indexmin=-1
+    while s<=e:
+        mid=(s+e)//2
+        if arr[s]<=arr[e]:
+            if arr[s]<ans:
+                ans=arr[s]
+                indexmin=s
+            break
+
+        # check for lefthalf
+        if arr[s]<=arr[mid]:
+            if arr[s]<ans:
+                ans=arr[s]
+                indexmin=s
+            s=mid+1
+        # check for righthalf:
+        else:
+            if arr[mid]<ans:
+                ans=arr[mid]
+                indexmin=mid
+            e=mid-1
+    if indexmin==-1:
+        return 0
+    return indexmin
+
+# //////////////////////////////////////////////////////////////////////////////////
+# single element in sorted:
+def singleNonDuplicate(arr):
+    # Write your code here
+    # bruteforce:
+    n=len(arr)
+    # check for elements front and back elements same or not
+    if n==1:
+        return arr[0]
+    for i in range(n):
+        if i==0:
+            if arr[i]!=arr[i+1]:
+                return arr[i]
+
+        elif i==n-1:
+            if arr[i-1]!=arr[i]:
+                return arr[i]
+        else:
+            if arr[i]!=arr[i+1] and arr[i]!=arr[i-1]:
+                return arr[i]
+            
+def singleNonDuplicate(arr):
+    # Write your code here
+    # bruteforce:
+    n=len(arr)
+    # check for elements front and back elements same or not
+    if n==1:
+        return arr[0]
+    if arr[0]!=arr[1]:
+        return arr[0]
+    if arr[n-1]!=arr[n-2]:
+        return arr[n-1]
+    s=1
+    e=n-2
+    while s<=e:
+        mid=(s+e)//2
+        if arr[mid]!=arr[mid+1] and arr[mid]!=arr[mid-1]:
+            return arr[mid]
+        # we are on left and element lies on right:
+        # here we are checking for (even, odd) condition:
+        if (mid%2!=0 and arr[mid]==arr[mid-1]) or (mid%2==0 and arr[mid]==arr[mid+1]) :
+            # our elemnt is on right so need to eliminate left half:
+            s=mid+1
+        # other are (odd, even) conditions:
+        else:
+            # eliminating right half
+            e=mid-1
+    return 
+# //////////////////////////////////////////////////////////////////////////////
+
+# find peak element in array:
+def findPeakElement(arr):
+    # Write your code here
+    n=len(arr)
+    if n==1:
+        return 0
+    if arr[0]>arr[1]:
+        return 0 
+    if arr[n-1]>arr[n-2]:
+        return n-1
+    s=1
+    e=n-2
+    while s<=e:
+        mid=(s+e)//2
+        if arr[mid]>arr[mid-1] and arr[mid]>arr[mid+1]:
+                return mid
+        # checking if arr[mid] is on increasing curve:
+        elif arr[mid]>arr[mid-1] or arr[mid]<arr[mid+1]:
+                s=mid+1
+        # checking if arr[mid] is on decreasing curve:
+        else:
+                e=mid-1
+
+
+# Binary Search on Answers:
+# Find square root of a number:
+def sqrrt(n):
+    ans=1
+    for i in range(1,n+1):
+        if (i*i)<=n:
+            ans=i
+        else:
+            break
+    return (ans)//1
+print(sqrrt(36))
+
+# ///////////////////////////////////////////////////////
+# Nth root of a number:
+def NthRoot(n, m) :
+    # Write Your Code Here
+    s=1
+    e=m-1
+    while s<=e:
+        mid=(s+e)//2
+        if (mid**n)==m:
+            return mid
+        elif mid**n>m:
+            e=mid-1
+        else:
+            s=mid+1
+    return -1
+# //////////////////////////////////////////////////////////////////////////
+# koko eating bananas:
+from math import *
+
+def minimumRateToEatBananas(v, h) :
+    # Write Your Code Here.
+    # brute force:
+    # for i in range(1,max(v)+1):
+    #     total=0
+    #     for j in range(0,len(v)):
+    #         total+=(ceil((v[j]/i)))
+    #     if total<=h:
+    #         return i
+    # optimal:
+    s=1
+    e=max(v)
+    ans=0
+    while s<=e:
+        mid=(s+e)//2
+        total=0
+        for i in range(0,len(v)):
+            total+=ceil(v[i]/mid)
+        if total<=h:
+            ans=mid
+            e=mid-1
+        elif total>h:
+            s=mid+1
+    return ans
+
+
+# ////////////////////////////////////////////////////////////
+# minimum days to make m bouquets:
+def roseGarden(arr, k, m):
+    # write yur code here
+    # bruteforce:
+    # i=min(arr)
+    # j=max(arr)
+    # for day in range(i,j+1):
+    #     count=0
+    #     Bou=0
+    #     for l in range(len(arr)):
+    #         if arr[l]<=day:
+    #             count+=1
+    #         else:
+    #             Bou+=floor(count/k)
+    #             count=0
+    #     Bou+=floor(count/k)
+    #     if Bou>=m:
+    #         return day
+    # return -1
+    s=min(arr)
+    e=max(arr)
+    ans= float('inf')
+    if len(arr)<m*k:
+        return -1
+    while s<=e:
+        daymid=(s+e)//2
+        count=0
+        bouq=0
+        for i in range(len(arr)):
+            if arr[i]<=daymid:
+                count+=1
+            else:
+                bouq+=floor(count/k)
+                count=0
+        bouq+=floor(count/k)
+        if bouq>=m:
+            ans=min(ans,daymid)
+            e=daymid-1
+        else:
+            s=daymid+1
+    if ans!=float('inf'):
+        return ans
+    return -1
+
+
+# ////////////////////////////////////////////////////////////////////
+# smallest divisor:
+def smallestDivisor(arr, limit):
+    # Write your code here.
+    # bruteforce:
+    # ans=float('inf')
+    # for divisor in range(1,max(arr)+1):
+    #     sumd=0
+    #     for i in range(len(arr)):
+    #         sumd+=ceil(arr[i]/divisor)
+    #     if sumd<=limit:
+    #         ans=min(divisor,ans)
+    # return ans
+    s=1
+    e=max(arr)
+    ans=float('inf')
+    while s<=e:
+        divisormid=(s+e)//2
+        sumd=0
+        for i in range(len(arr)):
+            sumd+=ceil(arr[i]/divisormid)
+        if sumd<=limit:
+            ans=min(ans,divisormid)
+            e=divisormid-1
+        else:
+            s=divisormid+1
+    return ans
+        
+
+
