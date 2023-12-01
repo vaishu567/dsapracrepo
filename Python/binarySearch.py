@@ -631,6 +631,106 @@ def smallestDivisor(arr, limit):
         else:
             s=divisormid+1
     return ans
-        
+
+
+# //////////////////////////////////////////////////////////////////////////////////
+# capacity of ship:
+def shipWithinDays(weights, days):
+    ans=float('inf')
+    s=max(weights)
+    e=sum(weights)
+    # bruteforce:
+    # for capacity in range(s,e+1):
+    #     sumcap=0
+    #     daycount=1
+    #     for l in range(len(weights)):
+    #         if sumcap+weights[l]>capacity:
+    #             daycount+=1
+    #             sumcap=weights[l]
+    #         else:
+    #             sumcap+=weights[l]
+    #     if daycount<=days:
+    #         ans=min(ans,capacity)
+    # return ans
+    while s<=e:
+        capacitymid=(s+e)//2
+        sumcap=0
+        daycount=1
+        for i in range(len(weights)):
+            if sumcap+weights[i]>capacitymid:
+                daycount+=1
+                sumcap=weights[i]
+            else:
+                sumcap+=weights[i]
+        if daycount<=days:
+            ans=min(ans,capacitymid)
+            e=capacitymid-1
+        else:
+            s=capacitymid+1
+    return ans
+
+
+# ///////////////////////////////////////////////////////////////////////
+# find missing positive element at kth position:
+def findKthPositive(self, vec: List[int], k: int) -> int:
+    # for i in range(len(arr)):
+    #     if arr[i]<=k:
+    #         k+=1
+    #     else:
+    #         break
+    # return k
+    s=0
+    n=len(vec)
+    e=n-1
+    while s<=e:
+        mid=(s+e)//2
+        missing=vec[mid]-(mid+1)
+        if missing<k:
+            s=mid+1
+        else:
+            e=mid-1
+    return e+k+1
+# ////////////////////////////////////////////////////////////////////////
+# aggresivecows:
+def aggressiveCows(stalls, k):
+    # Write your code here.
+    # brutefrce:
+    # stalls.sort()
+    # n=len(stalls)
+    # maxi=stalls[n-1]
+    # mini=stalls[0]
+    # ans=-float('inf')
+    # for dist in range(1,maxi-mini+1):
+    #     lastcow=stalls[0]
+    #     cowcount=1
+    #     for j in range(1,n):
+    #         if stalls[j]-lastcow>=dist:
+    #             cowcount+=1
+    #             lastcow=stalls[j]
+    #         if cowcount>=k:
+    #             ans=max(dist,ans)
+    # return ans
+    # optimal:
+    stalls.sort()
+    n=len(stalls)
+    maxi=stalls[n-1]
+    mini=stalls[0]
+    ans=-float('inf')
+    s=1
+    e=maxi-mini
+    while s<=e:
+        middist=(s+e)//2
+        lastcow=stalls[0]
+        cowcount=1
+        for i in range(1,n):
+            if stalls[i]-lastcow>=middist:
+                cowcount+=1
+                lastcow=stalls[i]
+        if cowcount>=k:
+            ans=max(ans,middist)
+            s=middist+1
+        else:
+            e=middist-1
+    return ans
 
 
