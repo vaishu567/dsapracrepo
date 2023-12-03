@@ -691,6 +691,9 @@ def findKthPositive(self, vec: List[int], k: int) -> int:
             e=mid-1
     return e+k+1
 # ////////////////////////////////////////////////////////////////////////
+
+
+# max(min) and min(max) variations:
 # aggresivecows:
 def aggressiveCows(stalls, k):
     # Write your code here.
@@ -732,5 +735,83 @@ def aggressiveCows(stalls, k):
         else:
             e=middist-1
     return ans
+
+
+# min(max) variation allocate books:
+def findPages(arr: [int], n: int, m: int) -> int:
+
+    # Write your code here
+    # Return the minimum number of pages
+    if m>n:
+        return -1
+    # for pages in range(max(arr),sum(arr)+1):
+    #     countstudents=1
+    #     sumpages=0
+    #     for i in range(len(arr)):
+    #         if sumpages+arr[i]>pages:
+    #             countstudents+=1
+    #             sumpages=arr[i]
+    #         else:
+    #             sumpages+=arr[i]    
+    #     if countstudents==m:
+    #         return pages
+    # return -1
+    s=max(arr)
+    e=sum(arr)
+    ans=float('inf')
+    while s<=e:
+        midpages=(s+e)//2
+        countstudents=1
+        sumpages=0
+        for i in range(len(arr)):
+            if sumpages+arr[i]>midpages:
+                countstudents+=1
+                sumpages=arr[i]
+            else:
+                sumpages+=arr[i]
+        # if countstudents==m:
+        #     ans=min(ans,midpages)
+        #     e=midpages-1
+        if countstudents>m:
+            s=midpages+1
+        else:
+            e=midpages-1
+    return s
+    # oppposite polarity concept
+
+
+# //////////////////////////////////////////////////////////
+# largest subarray sum minimum:
+def largestSubarraySumMinimized(a, k):
+    # Write Your Code Here
+    # for sumA in range(max(a),sum(a)+1):
+    #     subacount=1
+    #     sumsub=0
+    #     for i in range(len(a)):
+    #         if sumsub+a[i]>sumA:
+    #             subacount+=1
+    #             sumsub=a[i]
+    #         else:
+    #             sumsub+=a[i]
+    #     if subacount==k:
+    #         return sumA
+    ans=float('inf')
+    s=max(a)
+    e=sum(a)
+    while s<=e:
+        midsum=(s+e)//2
+        subacount=1
+        sumsub=0
+        for i in range(len(a)):
+            if sumsub+a[i]>midsum:
+                subacount+=1
+                sumsub=a[i]
+            else:
+                sumsub+=a[i]
+        if subacount<=k:
+            e=midsum-1
+        else:
+            s=midsum+1
+    return s
 
 
