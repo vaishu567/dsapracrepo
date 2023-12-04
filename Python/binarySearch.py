@@ -815,3 +815,7 @@ def largestSubarraySumMinimized(a, k):
     return s
 
 
+
+howmany=[0 for i in range(5-1)]
+print(5/2)
+
