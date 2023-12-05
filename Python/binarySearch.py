@@ -813,9 +813,242 @@ def largestSubarraySumMinimized(a, k):
         else:
             s=midsum+1
     return s
+# //////////////////////////////////////////////////////////////////////////////////////
+# painter's partition:
+def findLargestMinDistance(boards:list, k:int):
+    # Write your code here
+    # Return an integer
+    # ans=float('inf')
+    # for time in range(max(boards),sum(boards)+1):
+    #     painterscount=1
+    #     sumUnit=0
+    #     for i in range(len(boards)):
+    #         if sumUnit+boards[i]>time:
+    #             painterscount+=1
+    #             sumUnit=boards[i]
+
+    #         else:
+    #             sumUnit+=boards[i]
+    #     if painterscount<=k:
+    #         return time
+    s=max(boards)
+    e=sum(boards)
+    while s<=e:
+        midtime=(s+e)//2
+        painterscount=1
+        sumUnit=0
+        for i in range(len(boards)):
+            if sumUnit+boards[i]>midtime:
+                painterscount+=1
+                sumUnit=boards[i]
+
+            else:
+                sumUnit+=boards[i]
+        if painterscount<=k:
+            e=midtime-1
+        else:
+            s=midtime+1
+    return s
+
+# /////////////////////////////////////////////////////////////////
+# minimize max distance to gas station:
+# from math import *
+def numberOfGasStationsRequired(dist,arr):
+    n = len(arr)  # size of the array
+    cnt = 0
+    for i in range(1, n):
+        numberInBetween = ((arr[i] - arr[i - 1]) // dist)
+        if (arr[i] - arr[i - 1]) == (dist * numberInBetween):
+            numberInBetween -= 1
+        cnt += numberInBetween
+    return cnt
 
 
+def minimiseMaxDistance(arr: [int], k: int) -> float:
+    # Write your code here.
+    n=len(arr)
+    # howmany=[0 for i in range(n-1)]
+    # for i in range(1,k+1):
+    #     maxivalue=-1
+    #     maxindex=-1
+    #     for j in range(n-1):
+    #         diff=arr[j+1]-arr[j]
+    #         sectionlen=(diff)/(howmany[j]+1)
+    #         if maxivalue<sectionlen:
+    #             maxivalue=sectionlen
+    #             maxindex=j
+    #     howmany[maxindex]+=1
+    # maxLen=-1
+    # for i in range(n-1):
+    #     sectionleng=(arr[i+1]-arr[i])/(howmany[i]+1)
+    #     maxLen=max(maxLen,sectionleng)
+    # return maxLen
+    low=0
+    high=0
+    for i in range(n - 1):
+        high = max(high, arr[i + 1] - arr[i])
+    d=1e-6
+    while high - low > d:
+        middist = (low + high) /2.0
+        cnt = numberOfGasStationsRequired(middist, arr)
+        if cnt > k:
+            low = middist
+        else:
+            high = middist
 
-howmany=[0 for i in range(5-1)]
-print(5/2)
+    return high
 
+
+# ///////////////////////////////////////////////////////////////
+# median:
+def median(a: int, b: int) -> float:
+    # Write the function here.
+    # bruteforce:
+    # n=len(a)
+    # m=len(b)
+    # arr=[]
+    # i=0
+    # j=0
+    # k=n+m
+    # while i<n and j<m:
+    #     if a[i]<=b[j]:
+    #         arr.append(a[i])
+    #         i+=1
+    #     else:
+    #         arr.append(b[j])
+    #         j+=1
+    # while i<n:
+    #     arr.append(a[i])
+    #     i+=1
+    # while j<m:
+    #     arr.append(b[j])
+    #     j+=1
+    # if (k)%2==0:
+    #     mid=(arr[k//2]+arr[(k//2)-1])/2
+    # else:
+    #     mid=arr[k//2]/1.0
+    # return mid
+    # better:
+    # n=len(a)
+    # m=len(b)
+    # i=0
+    # j=0
+    # k=n+m
+    # ind2=k//2
+    # ind1=ind2-1
+    # cnt=0
+    # ind1el=-1
+    # ind2el=-1
+    # while i<n and j<m:
+    #     if a[i]<b[j]:
+    #         if cnt==ind1:
+    #             ind1el=a[i]
+    #         if cnt==ind2:
+    #             ind2el=a[i]
+    #         cnt+=1
+    #         i+=1
+    #     else:
+    #         if cnt==ind1:
+    #             ind1el=b[j]
+    #         if cnt==ind2:
+    #             ind2el=b[j]
+    #         cnt+=1
+    #         j+=1
+    # while i<n:
+    #     if cnt==ind1:
+    #         ind1el=a[i]
+    #     if cnt==ind2:
+    #         ind2el=a[i]
+    #     cnt+=1
+    #     i+=1
+    # while j<m:
+    #     if cnt==ind1:
+    #         ind1el=b[j]
+    #     if cnt==ind2:
+    #         ind2el=b[j]
+    #     cnt+=1
+    #     j+=1 
+    # if k%2==0:
+    #     return (ind1el+ind2el)/2
+    # else:
+    #     return ind2el/1.0
+    # optimal:
+    # Write the function here.
+    n=len(a)
+    m=len(b)
+    k=n+m
+    if n>m:
+        return median(b,a)
+    low=0
+    high=n
+    left=(n+m+1)//2
+    while low<=high:
+        mid1=(low+high)//2
+        mid2=left-mid1
+        l1, l2, r1, r2 = float('-inf'), float('-inf'), float('inf'), float('inf')
+        if mid1<n:
+            r1 = a[mid1]
+        if mid2 < m:
+            r2 = b[mid2]
+        if mid1 - 1 >= 0:
+            l1 = a[mid1 - 1]
+        if mid2 - 1 >= 0:
+            l2 = b[mid2 - 1]
+
+        if l1 <= r2 and l2 <= r1:
+            if k % 2 == 1:
+                return max(l1, l2)/1.0
+            else:
+                return (max(l1,l2) + min(r1, r2)) / 2.0
+        
+        elif l1 > r2:
+            high = mid1 - 1
+        else:
+            low = mid1 + 1
+    return 0
+
+# kth element from two sorted array:
+def kthElement(arr1: [int], n: int, arr2: [int], m: int, k: int) -> int:
+    # Write your code from here.
+    # bruteforce:
+    # arr=[]
+    # i=0
+    # j=0
+    # while i<n and j<m:
+    #     if arr1[i]<=arr2[j]:
+    #         arr.append(arr1[i])
+    #         i+=1
+    #     else:
+    #         arr.append(arr2[j])
+    #         j+=1
+    # while i<n:
+    #     arr.append(arr1[i])
+    #     i+=1
+    # while j<m:
+    #     arr.append(arr2[j])
+    #     j+=1
+    # return arr[k-1]
+    # optimal:
+    if n>m:
+        return kthElement(arr2,m,arr1,n,k)
+    left=k
+    low=max(0,k-m)
+    high=min(k,n)
+    while low<=high:
+        mid1=(low+high)//2
+        mid2=left-mid1
+        l1,l2,r1,r2=-float('inf'),-float('inf'),float('inf'),float('inf')
+        if mid1<n:
+            r1=arr1[mid1]
+        if mid2<m:
+            r2=arr2[mid2]
+        if mid1-1>=0:
+            l1=arr1[mid1-1]
+        if mid2-1>=0:
+            l2=arr2[mid2-1]
+        if l1<=r2 and l2<=r1:
+            return max(l1,l2)
+        elif l1>r2:
+            high=mid1-1
+        else:
+            low=mid1+1
