@@ -169,4 +169,39 @@ def totalMoney(self, n: int) -> int:
 
 
 
-        
+# largest oddnumber in string:
+class Solution:
+    def largestOddNumber(self, num: str) -> str:
+        # ans=""
+        # maxi=float('-inf')
+        # new=0
+        # # converting string to num:
+        # for i in num:
+        #     nu=(ord(i)-48)
+        #     if nu%2!=0:
+        #         maxi=max(maxi,nu)
+        #     new=new*10+nu
+        #     if new%2!=0:
+        #         maxi=max(maxi,new)
+        # if new%2!=0:
+        #     maxi=max(maxi,new)
+        #     return str(maxi)
+        # if maxi!=float('-inf'):
+        #     return str(maxi)
+        # return ans
+        n=len(num)
+        for i in range(n-1,-1,-1):
+            if int(num[i])%2!=0:
+                return num[0:i+1]
+        return ""
+
+def removeOuterParentheses(s):
+    count=0
+    for i in range(len(s)-1):
+        if s[i]=="(" and s[i+1]==")":
+            count+=1
+    new=""
+    for i in range(count):
+        new+="()"
+    return count
+print(removeOuterParentheses("(()())(())"))

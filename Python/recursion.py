@@ -130,6 +130,133 @@ print(fibonacci(4))
 # print(ord('b')-ord('a'))
 
 
+# power of x:
+def powern(x,n):
+    if n==1:
+        return x
+    power=x*(powern(x,n-1))
+    return power
+print(powern(3,3))
+
+
+# check if list is sorted or not:
+def checklist(arr,n):
+    if n==0:
+        return True
+    if arr[n]>=arr[n-1]:
+        return checklist(arr,n-1)
+    else:
+        return False
+    
+arr=[1,2,3,4,5,10,7,8,9]
+n=len(arr)-1
+print(checklist(arr,n))
+
+# sum of array using recursion:
+def sumarray(arr,sum,n):
+    if n==0:
+        return arr[0]
+    sum+=sumarray(arr,sum,n-1)
+    sum+=arr[n]
+    return sum
+arr=[7,4,9,11,-3]
+n=len(arr)-1
+print(sumarray(arr,0,n))
+
+
+# check if number is present in array:
+def checknumber(arr,target,n):
+    if n<0:
+        return -1
+    if arr[n]==target:
+        return n
+    return checknumber(arr,target,n-1)
+arr=[2,8,-5,7,-9]
+n=len(arr)-1
+target=7
+print(checknumber(arr,target,n-1))
+
+
+# first occurance of number in array:
+def firstocc(arr,x,n,i):
+    if i==n:
+        return -1
+    if arr[i]==x:
+        return i
+    return firstocc(arr,x,n,i+1)
+arr=[1,2,3,4,3,3,4,4,8]
+n=len(arr)
+x=8
+print(firstocc(arr,x,n,0))
+
+# sorted array:
+# [1,2,3,3,3,4,4,4,5,6]
+def firstoccarr(arr,x,s,e):
+    if s>e:
+        return s
+    mid=(s+e)//2
+    if arr[mid]>=x:
+        e=mid-1
+        return firstoccarr(arr,x,s,e)
+    else:
+        s=mid+1
+        return firstoccarr(arr,x,s,e)
+arr=[1,2,3,3,3,4,4,4,5,6]
+x=1
+s=0
+e=len(arr)-1
+print(firstoccarr(arr,x,s,e))
+
+
+# recursion on strings:
+def replaceab(s,n,i,sam):
+    if i==n:
+        return sam
+    if s[i]=='p' and s[i+1]=="i":
+        sam+='b'
+        # continue
+        # pass
+    else:
+        sam+=s[i]
+    sam=replaceab(s,n,i+1,sam)
+    return sam
+s="abacusa"
+n=len(s)
+sam=""
+print(replaceab(s,n,0,sam))
+
+
+# replace pi:
+def replacepi(s):
+    if len(s)==0 or len(s)==1:
+        return s
+    if s[0]=='p' and s[1]=='i':
+        smalloutput=replacepi(s[2:])
+        return '3.14'+smalloutput
+    else:
+        smalloutput=replacepi(s[1:])
+        return s[0]+smalloutput
+s="pipipple"
+print(replacepi(s))
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+d={'s':2,'r':4,'g':5,'b':1,'k':3}
+l=sorted(d.values())
+print(l)
+d=dict(sorted(d.items(), key=lambda i:i[1] ,reverse=True))
+print(d)
+
 
 
         
