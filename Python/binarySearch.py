@@ -672,7 +672,7 @@ def shipWithinDays(weights, days):
 
 # ///////////////////////////////////////////////////////////////////////
 # find missing positive element at kth position:
-def findKthPositive(self, vec: List[int], k: int) -> int:
+def findKthPositive(vec, k):
     # for i in range(len(arr)):
     #     if arr[i]<=k:
     #         k+=1
@@ -901,7 +901,7 @@ def minimiseMaxDistance(arr: [int], k: int) -> float:
 
 # ///////////////////////////////////////////////////////////////
 # median:
-def median(a: int, b: int) -> float:
+def median(a, b) :
     # Write the function here.
     # bruteforce:
     # n=len(a)
@@ -1008,7 +1008,7 @@ def median(a: int, b: int) -> float:
     return 0
 
 # kth element from two sorted array:
-def kthElement(arr1: [int], n: int, arr2: [int], m: int, k: int) -> int:
+def kthElement(arr1, n, arr2, m, k):
     # Write your code from here.
     # bruteforce:
     # arr=[]
