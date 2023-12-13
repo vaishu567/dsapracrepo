@@ -312,9 +312,98 @@ print(staircase(4))
 
 
 # finding all subsequences of a string:
+# a subsequence is a part of string that need not be continuous
+# subsequence!=substring
+# we are supposed to make an array of strings and add all the subsequences in array and return 
+def subsequence(s):
+    if len(s) == 0:
+        output=[]
+        output.append(" ")
+        return output
+    # l.append(s[i])
+    smalls=s[1:]
+    smallo=subsequence(smalls)
+    l=[]
+    for j in range(len(smallo)):
+        l.append(smallo[j])
+        l.append(s[0]+smallo[j])
+    return l
+print(subsequence("abc"))
+
+
+# print keypad combinations:
+# let us assume that 1,0 are not there in our combinations
+def getString(d):
+    if d==2:
+        return "abc"
+    if d==3:
+        return "def"
+    if d==4:
+        return "ghi"
+    if d==5:
+        return "jkl"
+    if d==6:
+        return "mno"
+    if d==7:
+        return "pqrs"
+    if d==8:
+        return "tuv"
+    if d==9:
+        return "wxyz"
+def keyC(num):
+    if num == 0:
+        output=[]
+        output.append(" ")
+        return output
+    
+    smallnum=num//10
+    rem=num%10
+    smallop=keyC(smallnum)
+    stringford=getString(rem)
+    op=[]
+    # j=len(stringford)-1
+    for i in smallop:
+        for j in stringford:
+            op.append(i+j)
+    return op
+o=keyC(237)
+print(len(o),o)
+
+# PRINTING output instead of returning:
+def fact(n):
+    if n==0:
+        return 1
+    smallop=fact(n-1)
+    op=n*(smallop)
+    print(op)
+    return op
+# here we are printing while we are returning
+# but that's not what we want so:
+
+def factr(n):
+    if n==0:
+        return 1
+    op=n*factr(n-1)
+    return op
+# the above fun will return 
+# now then main function will print
+def factp(k):
+    op=factr(k)
+    print(op)
+factp(3)
+
+# but the idea is the actual recurrsive function to do printing
 
 
 
+
+
+
+
+    
+
+    
+    
 
 
 

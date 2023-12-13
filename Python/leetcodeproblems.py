@@ -91,7 +91,7 @@ def numberOfMatches(self, n: int) -> int:
 # Constraints:
 
 # 1 <= n <= 1000
-def totalMoney(self, n: int) -> int:
+def totalMoney( n):
     total=0
     if n<=7:
         total=(n*(n+1))//2
@@ -170,30 +170,30 @@ def totalMoney(self, n: int) -> int:
 
 
 # largest oddnumber in string:
-class Solution:
-    def largestOddNumber(self, num: str) -> str:
-        # ans=""
-        # maxi=float('-inf')
-        # new=0
-        # # converting string to num:
-        # for i in num:
-        #     nu=(ord(i)-48)
-        #     if nu%2!=0:
-        #         maxi=max(maxi,nu)
-        #     new=new*10+nu
-        #     if new%2!=0:
-        #         maxi=max(maxi,new)
-        # if new%2!=0:
-        #     maxi=max(maxi,new)
-        #     return str(maxi)
-        # if maxi!=float('-inf'):
-        #     return str(maxi)
-        # return ans
-        n=len(num)
-        for i in range(n-1,-1,-1):
-            if int(num[i])%2!=0:
-                return num[0:i+1]
-        return ""
+
+def largestOddNumber(num):
+    # ans=""
+    # maxi=float('-inf')
+    # new=0
+    # # converting string to num:
+    # for i in num:
+    #     nu=(ord(i)-48)
+    #     if nu%2!=0:
+    #         maxi=max(maxi,nu)
+    #     new=new*10+nu
+    #     if new%2!=0:
+    #         maxi=max(maxi,new)
+    # if new%2!=0:
+    #     maxi=max(maxi,new)
+    #     return str(maxi)
+    # if maxi!=float('-inf'):
+    #     return str(maxi)
+    # return ans
+    n=len(num)
+    for i in range(n-1,-1,-1):
+        if int(num[i])%2!=0:
+            return num[0:i+1]
+    return ""
 
 def removeOuterParentheses(s):
     count=0
@@ -226,7 +226,7 @@ print(removeOuterParentheses("(()())(())"))
 
 # Input: arr = [1,1]
 # Output: 1
-def findSpecialInteger(self, arr: List[int]) -> int:
+def findSpecialInteger(arr):
     n=len(arr)
     size=n//4
     for i in range(0,n-size):
@@ -248,4 +248,39 @@ def findSpecialInteger(self, arr: List[int]) -> int:
     #         count=1
     #         curr=arr[i]
     #         i+=1
- 
+
+
+def numSpecial(mat):
+    n=len(mat)
+    m=len(mat[0])
+    # countr=0
+    # for row in range(n):
+    #     for col in range(m):
+    #         if mat[row][col]==1:
+    #             # check for row:
+    #             good=True
+    #             for r in range(n):
+    #                 if r!=row and mat[r][col]==1:
+    #                     good=False
+    #                     break
+    #             for c in range(m):
+    #                 if c!=col and mat[row][c]==1:
+    #                     good=False
+    #                     break
+    #             if good:
+    #                 countr+=1
+    # return countr 
+    countr=[0]*n
+    countc=[0]*m
+    for row in range(n):
+        for col in range(m):
+            if mat[row][col]==1:
+                countr[row]+=1
+                countc[col]+=1
+    count=0
+    for row in range(n):
+        for col in range(m):
+            if mat[row][col]==1:
+                if countr[row]==1 and countc[col]==1:
+                    count+=1
+    return count
