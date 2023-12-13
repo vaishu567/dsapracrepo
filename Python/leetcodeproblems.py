@@ -205,3 +205,47 @@ def removeOuterParentheses(s):
         new+="()"
     return count
 print(removeOuterParentheses("(()())(())"))
+
+
+
+# 1287. Element Appearing More Than 25% In Sorted Array
+# Solved
+# Easy
+# Topics
+# Companies
+# Hint
+# Given an integer array sorted in non-decreasing order, there is exactly one integer in the array that occurs more than 25% of the time, return that integer.
+
+ 
+
+# Example 1:
+
+# Input: arr = [1,2,2,6,6,6,6,7,10]
+# Output: 6
+# Example 2:
+
+# Input: arr = [1,1]
+# Output: 1
+def findSpecialInteger(self, arr: List[int]) -> int:
+    n=len(arr)
+    size=n//4
+    for i in range(0,n-size):
+        if arr[i]==arr[i+size]:
+            return arr[i]
+    return -1
+    # count=1
+    # i=1
+    # if n==1:
+    #     return arr[0]
+    # curr=arr[0]
+    # while i<n:
+    #     if arr[i]==curr:
+    #         count+=1
+    #         if count>(0.25*(n)):
+    #             return arr[i]
+    #         i+=1
+    #     else:
+    #         count=1
+    #         curr=arr[i]
+    #         i+=1
+ 

@@ -1052,3 +1052,6 @@ def kthElement(arr1, n, arr2, m, k):
             high=mid1-1
         else:
             low=mid1+1
+
+
+# print(ord('4')-ord('0'))

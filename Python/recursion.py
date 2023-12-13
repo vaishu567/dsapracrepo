@@ -240,7 +240,94 @@ s="pipipple"
 print(replacepi(s))
     
     
+# geometric sum:
+# 1+ 1/2 + 1/4 + .....+ 1/(2^k)
+def geometric(k,sum):
+    if k==0:
+        return 1
+    sum+=geometric(k-1,sum)
+    sum+=1/(2**k)
+    return sum
+print(geometric(4,0))
+
+# check palindrome:
+def palindromeS(s,i,j):
+    if i>j:
+        return True
+    if s[i]==s[j]:
+        return palindromeS(s,i+1,j-1)
+    return False
+s="racecar"
+s1="ninja"
+n=len(s1)
+print(palindromeS(s1,0,n-1))
+
+# sumofdigits:
+def sumofdigits(num,sum):
+    if num==0:
+        return 0
+    n=num%10
+    num=num//10
+    sum+=sumofdigits(num,sum) 
+    sum+=n
+    return sum
+print(sumofdigits(9,0))
+
+
+# multiplication recursion:
+def multiplication(m,n,sum):
+    if n==0:
+        return sum
+    sum+=multiplication(m,n-1,sum)
+    sum+=m
+    return sum
+print(multiplication(3,5,0))
+
+
+
+
+# tower of hanoi:
+def tower_hanoi(n,a,b,c):
+    if n==1:
+        print("move first disk from",a,"to",c)
+        return 
+    tower_hanoi(n-1,a,c,b)
+    print("move ",n,"th disk from",a,"to",c)
+    tower_hanoi(n-1,b,a,c)
+print(tower_hanoi(3,"s","h","d"))
+
+
+# staircase:
+def staircase(n):
+    if n==0:
+        return 1
+    elif n<0:
+        return 0
+    x=staircase(n-1)
+    y=staircase(n-2)
+    z=staircase(n-3)
+    return x+y+z
+print(staircase(4))
+
+
+
+# finding all subsequences of a string:
+
+
+
+
+
+
+
+# countzeroes:
+
+
+
+
+
+
     
+
     
     
 
