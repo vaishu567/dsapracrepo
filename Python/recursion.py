@@ -393,8 +393,67 @@ def factp(k):
 factp(3)
 
 # but the idea is the actual recurrsive function to do printing
+def factorialPrint(n,ans):
+    if n==0:
+        print(ans)
+        return 
+    ans=ans*n
+    factorialPrint(n-1,ans)
+factorialPrint(5,1)
+# print min in array:
+# instead of returning print min:
+def minarr(arr,mini):
+    if len(arr)==0:
+        print(mini)
+        return 
+    mini=min(arr[0],mini)
+    minarr(arr[1:],mini)
+arr=[2,3,-4,5,6,7,8,9,10]
+mini=float('inf')
+minarr(arr,mini)
 
+# instead of returning the list we need to print them:
+# print all subsequences of string:
+def printsubseq(s,o):
+    if len(s) == 0:
+        print(o)
+        return 
+    # don't include 0th char
+    printsubseq(s[1:],o)
+    # include 0th character
+    newo=o+s[0]
+    printsubseq(s[1:],newo)
+printsubseq("abc","")
 
+def getString(d):
+    if d==2:
+        return "abc"
+    if d==3:
+        return "def"
+    if d==4:
+        return "ghi"
+    if d==5:
+        return "jkl"
+    if d==6:
+        return "mno"
+    if d==7:
+        return "pqrs"
+    if d==8:
+        return "tuv"
+    if d==9:
+        return "wxyz"
+def printkeypad(num,op):
+    if num==0:
+        print(op)
+        return 
+    lastD=num%10
+    num=num//10
+    s=getString(lastD)
+    for i in s:
+        printkeypad(num,i+op)
+printkeypad(234,"")
+        
+    
 
 
 

@@ -284,3 +284,4 @@ def numSpecial(mat):
                 if countr[row]==1 and countc[col]==1:
                     count+=1
     return count
+
