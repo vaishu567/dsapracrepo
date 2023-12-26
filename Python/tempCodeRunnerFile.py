@@ -1,18 +1,12 @@
-# we don't want to print we want to count:
-def subseqkcount(a,op,k):
-    if len(a)==0:
-        if sum(op)==k:
-            return 1
-        else:
-            return 0  
-    # taking s[0]:
-    op.append(a[0])
-    l=subseqkcount(a[1:],op,k)
-    # not taking s[0]
-    op.remove(a[0])
-    r=subseqkcount(a[1:],op,k)
-    return l+r
-a=[4,2,5,6,7]
-
-k=14
-print(subseqkcount(a,[],k))
+def subrec(arr,op):
+    if len(arr)==0:
+        print(op)
+        return 
+    # not taking:
+    op.append(arr[0])
+    subrec(arr[1:],op)
+    op.remove(arr[0])
+    subrec(arr[1:],op)
+arr=[5,6,7,8,9,10]
+op=[]
+print(subrec(arr,op))

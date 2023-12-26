@@ -45,7 +45,7 @@ def subrec(arr,op):
     subrec(arr[1:],op)
     op.remove(arr[0])
     subrec(arr[1:],op)
-arr=[3,2,1]
+arr=[5,6,7,8,9,10]
 op=[]
 print(subrec(arr,op))
 
@@ -123,6 +123,8 @@ print(isSubsetPresent(len(a),2,a))
 
 # we don't want to print we want to count:
 def subseqkcount(a,op,k):
+    if sum(op)>k:
+        return 0
     if len(a)==0:
         if sum(op)==k:
             return 1
