@@ -202,7 +202,7 @@ def firstoccarr(arr,x,s,e):
         s=mid+1
         return firstoccarr(arr,x,s,e)
 arr=[1,2,3,3,3,4,4,4,5,6]
-x=1
+x=4
 s=0
 e=len(arr)-1
 print(firstoccarr(arr,x,s,e))
@@ -214,13 +214,14 @@ def replaceab(s,n,i,sam):
         return sam
     if s[i]=='p' and s[i+1]=="i":
         sam+='b'
+        i+=1
         # continue
         # pass
     else:
         sam+=s[i]
     sam=replaceab(s,n,i+1,sam)
     return sam
-s="abacusa"
+s="pipipppippipicipcusa"
 n=len(s)
 sam=""
 print(replaceab(s,n,0,sam))
@@ -236,7 +237,7 @@ def replacepi(s):
     else:
         smalloutput=replacepi(s[1:])
         return s[0]+smalloutput
-s="pipipple"
+s="ipipple"
 print(replacepi(s))
     
     
@@ -308,28 +309,6 @@ def staircase(n):
     z=staircase(n-3)
     return x+y+z
 print(staircase(4))
-
-
-
-# finding all subsequences of a string:
-# a subsequence is a part of string that need not be continuous
-# subsequence!=substring
-# we are supposed to make an array of strings and add all the subsequences in array and return 
-def subsequence(s):
-    if len(s) == 0:
-        output=[]
-        output.append(" ")
-        return output
-    # l.append(s[i])
-    smalls=s[1:]
-    smallo=subsequence(smalls)
-    l=[]
-    for j in range(len(smallo)):
-        l.append(smallo[j])
-        l.append(s[0]+smallo[j])
-    return l
-print(subsequence("abc"))
-
 
 # print keypad combinations:
 # let us assume that 1,0 are not there in our combinations
@@ -412,18 +391,7 @@ arr=[2,3,-4,5,6,7,8,9,10]
 mini=float('inf')
 minarr(arr,mini)
 
-# instead of returning the list we need to print them:
-# print all subsequences of string:
-def printsubseq(s,o):
-    if len(s) == 0:
-        print(o)
-        return 
-    # don't include 0th char
-    printsubseq(s[1:],o)
-    # include 0th character
-    newo=o+s[0]
-    printsubseq(s[1:],newo)
-printsubseq("abc","")
+
 
 def getString(d):
     if d==2:
@@ -452,6 +420,11 @@ def printkeypad(num,op):
     for i in s:
         printkeypad(num,i+op)
 printkeypad(234,"")
+
+
+
+
+
         
     
 
