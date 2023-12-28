@@ -121,7 +121,49 @@ def subarrayWithMaxProduct(arr):
         maxi=max(maxi,max(suf,pref))
     return maxi
 
+# return subarrays list  with sum k:
+def subarraysWithSumK( a:[int], k:int) ->[[int]]:
+    # Write your code here
+    i=0
+    sumk=0
+    n=len(a)
+    fin=[]
+    temp=[]
+    for j in range(n):
+        sumk+=a[j]
+        temp.append(a[j])
+        while i<j and sumk>k:
+            sumk-=a[i]
+            temp.remove(a[i])
+            i+=1
+        if sumk==k:
+            fin.append(list(temp))
+    return fin
 
+
+# count the number of subarrays:
+# Given an array A[] of N integers 
+# and a range(L, R). The task is to 
+# find the number of subarrays having 
+# sum in the range L to R (inclusive).
+def counti(A,k,N):
+    i=0
+    sumk=0
+    count=0
+    for j in range(N):
+        sumk+=A[j]
+        while i<j and sumk>k:
+            sumk-=A[i]
+            i+=1
+        if sumk<=k:
+            count+=j-i+1
+    return count
+    
+def countSubarray(N, A, L, R):
+    # code here
+    count1=counti(A,R,N)
+    count2=counti(A,(L-1),N)
+    return count1-count2
 
 
 

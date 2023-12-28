@@ -36,18 +36,23 @@ printsubseq("abc","")
 
 
 # print all subsequences of array using recursion:
-def subrec(arr,op):
+def subrec(arr,op,result):
     if len(arr)==0:
-        print(op)
-        return 
+        result.append(list(op))
+        # print(op)
+        return result
     # not taking:
     op.append(arr[0])
-    subrec(arr[1:],op)
+    result=subrec(arr[1:],op,result)
     op.remove(arr[0])
-    subrec(arr[1:],op)
-arr=[5,6,7,8,9,10]
+    result=subrec(arr[1:],op,result)
+    return result
+arr=[1,2,1]
 op=[]
-print(subrec(arr,op))
+result=[]
+print(subrec(arr,op,result))
+
+
 
 
 # print all subsequences of array whose sum is k using recursion:
@@ -140,3 +145,21 @@ def subseqkcount(a,op,k):
 a=[4,2,5,6,7]
 k=14
 print(subseqkcount(a,[],k))
+
+
+
+
+def subseqofs(s,opl,o):
+    if len(s)==0:
+        opl.append(o)
+        return opl
+    # not taking s[0]
+    opl=subseqofs(s[1:],opl,o)
+    # taking s[0]
+    newo=o+s[0]
+    opl=subseqofs(s[1:],opl,newo)
+    return opl
+s="abc"
+opl=[]
+o=" "
+print(subseqofs(s,opl,o))

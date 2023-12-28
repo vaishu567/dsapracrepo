@@ -422,8 +422,58 @@ def printkeypad(num,op):
 printkeypad(234,"")
 
 
+# good numbers:
+
+def goods(sumn,temp,digit):
+    if temp==0:
+        return True
+    rem=temp%10
+    if rem>sumn and rem!=digit:
+        sumn+=rem
+        temp=temp//10
+        return goods(sumn,temp,digit)
+    return False 
+
+def goodNumbers(a, b, digit):
+    op=[]
+    for num in range(a,b+1):
+        temp=num
+        sumn=temp%10
+        if sumn==digit:
+            continue
+        temp=temp//10
+        if goods(sumn,temp,digit)==True:
+            op.append(num)
+    return op
 
 
+
+def callingrecu(s,i,maxi,mini,ans,sign):
+    if i>=len(s) or s[i].isnumeric()==False:
+        return sign*ans
+    ans=ans*10+(ord(s[i])-ord('0'))
+    if sign==1 and (sign*ans)>=maxi:
+        return maxi
+    if sign==-1 and (sign*ans)<=mini:
+        return mini
+    final=callingrecu(s,i+1,maxi,mini,ans,sign) 
+    return final 
+
+def createAtoi(s):
+    # write your code here
+    s=s.strip()
+    sign=1
+    if s[0]=="-":
+        sign=-1
+    if s[0]=="-" or s[0]=="+":
+        i=1
+    else:
+        i=0
+    maxi=(2**31)-1
+    mini=-(2**31)
+    ans=0
+    final=callingrecu(s,i,maxi,mini,ans,sign)
+    return final
 
         
     
