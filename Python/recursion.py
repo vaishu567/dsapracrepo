@@ -483,8 +483,35 @@ def createAtoi(s):
 
 
     
+# def rev(revarr,stack):
+#     if len(stack)==0:
+#         return revarr
+#     rev(revarr,stack[1:])
+#     revarr.append(stack[0])
+#     return revarr
 
-    
+
+# def reverseStack(stack: List[int]) -> None:
+#     # Write your code here.
+#     revarr=[]
+#     rev(revarr,stack)
+#     for i in range(len(revarr)):
+#         stack[i]=revarr[i]
+#     return stack
+
+def rev(stack: List[int],start,end) -> None:
+    # Write your code here.'    
+    if start >= end:
+        return stack
+    else:
+        temp = stack[start]
+        stack[start] = stack[end]
+        stack[end] = temp
+        return rev(stack, start + 1, end - 1)
+
+def reverseStack(stack: List[int]) -> None:
+    # Write your code here.'
+    return rev(stack,0,len(stack)-1)  
     
 
 
