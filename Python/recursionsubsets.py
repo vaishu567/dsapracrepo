@@ -36,21 +36,21 @@ printsubseq("abc","")
 
 
 # print all subsequences of array using recursion:
-def subrec(arr,op,result):
+def subrec(arr,op):
     if len(arr)==0:
-        result.append(list(op))
-        # print(op)
-        return result
+        # result.append(list(op))
+        print(op)
+        return
+        # return result
     # not taking:
     op.append(arr[0])
-    result=subrec(arr[1:],op,result)
+    subrec(arr[1:],op)
     op.remove(arr[0])
-    result=subrec(arr[1:],op,result)
-    return result
+    subrec(arr[1:],op)
 arr=[1,2,1]
 op=[]
-result=[]
-print(subrec(arr,op,result))
+# result=[]
+print(subrec(arr,op))
 
 
 
@@ -163,3 +163,17 @@ s="abc"
 opl=[]
 o=" "
 print(subseqofs(s,opl,o))
+
+
+
+# all subsequences using powerset:
+def subsets(nums):
+    n=len(nums)
+    final=[]
+    for num in range(0,2**n):
+        op=[]
+        for i in range(0,n):
+            if num&(1<<i)!=0:
+                op.append(nums[i])
+        final.append(list(op))
+    return final
