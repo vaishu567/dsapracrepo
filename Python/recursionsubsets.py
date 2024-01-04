@@ -177,3 +177,86 @@ def subsets(nums):
                 op.append(nums[i])
         final.append(list(op))
     return final
+
+# combinationsum-I:
+def recurscomb(indx,ARR,target,final,new):
+	if indx==len(ARR):
+		if target==0:
+			final.append(list(new))
+		return final
+	if ARR[indx]<=target:
+		new.append(ARR[indx])
+		final=recurscomb(indx,ARR,target-ARR[indx],final,new)
+		new.remove(ARR[indx])
+	final=recurscomb(indx+1,ARR,target,final,new)
+	return final
+
+def combSum(ARR, B):
+	# Write your code here
+	final=[]
+	new=[]
+	fin=recurscomb(0,ARR,B,final,new)
+	return fin
+ARR=[1,2,3]
+B=5
+print(combSum(ARR, B))
+
+
+# combinationsum-I modification:
+def recurs(indx,arr,final,t,op):
+    if indx==len(arr):
+        if t==0 :
+            # if len(final)==0 or op not in final:
+            final.append(list(op))
+        return final
+    if arr[indx]<=t:
+        op.append(arr[indx])
+        final=recurs(indx,arr,final,t-arr[indx],op)
+        op.remove(arr[indx])
+    final=recurs(indx+1,arr,final,t,op)
+    return final
+def combinationalSum(A, B):
+    A=sorted(list(set(A)))
+    final=set()
+    op=[]
+    fin=recurs(0,A,final,B,op)
+    fin=list(fin)
+    return fin
+A=[1,2,3]
+B=5
+print(combinationalSum(A, B))
+
+# combination Sum-II:
+# def helper(indx,arr,t,final,op):
+#     # if indx==len(arr):
+#     #     if t==0:
+#     #         if len(final)==0 or op not in final:
+#     #             final.append(list(op))
+#     #     return final
+#     # if arr[indx]<=t:
+#     #     op.append(arr[indx])
+#     #     final=helper(indx+1,arr,t-arr[indx],final,op)
+#     #     op.remove(arr[indx])
+#     # final=helper(indx+1,arr,t,final,op)
+#     # return final
+def helper(indx,arr,t,final,op):
+    if t==0:
+        final.append(list(op))
+        return final
+    for i in range(indx,len(arr)):
+        if i>indx and arr[i]==arr[i-1]:
+            continue
+        if arr[i]>t:
+            break
+        op.append(arr[i])
+        final=helper(i+1,arr,t-arr[i],final,op)
+        op.remove(arr[i])
+    return final
+
+def combinationSum2(arr: List[int], n: int, target: int) -> List[List[int]]:
+    # Write your code here.
+    arr=sorted(arr)
+    final=[]
+    op=[]
+    fin=helper(0,arr,target,final,op)
+    return fin
