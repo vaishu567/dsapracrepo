@@ -47,10 +47,14 @@ def subrec(arr,op):
     subrec(arr[1:],op)
     op.remove(arr[0])
     subrec(arr[1:],op)
-arr=[1,2,1]
+arr=[1,1,2]
 op=[]
 # result=[]
 print(subrec(arr,op))
+
+
+
+
 
 
 
@@ -260,3 +264,66 @@ def combinationSum2(arr: List[int], n: int, target: int) -> List[List[int]]:
     op=[]
     fin=helper(0,arr,target,final,op)
     return fin
+
+
+# subset sum-I:
+# T.C=O(2^n + 2^n(log2^n)) => 2^n for generating combinations i.e p/n and 2^nlog2^n is for final sort
+def recursub(arr,final,sumi):
+    if len(arr)==0:
+        final.append(sumi)
+        return final
+    # adding s[0] into sum:
+    sumi+=arr[0]
+    final=recursub(arr[1:],final,sumi)
+    # removing s[0] from sum:
+    sumi-=arr[0]
+    final=recursub(arr[1:],final,sumi)
+    return final
+
+
+def subsetSum(num: List[int]) -> List[int]:
+    # Write your code here.
+    final=[]
+    sumi=0
+    fin=recursub(num,final,sumi)
+    fin=sorted(fin)
+    return fin
+
+# get all unique subsets:
+# bruteforce:
+def subsetsWithDup(nums):
+    ans = []
+    res = set()
+    def fun(index, ds):
+        if index == len(nums):
+            ds.sort()
+            res.add(tuple(ds))
+            return
+        ds.append(nums[index])
+        fun(index + 1, ds)
+        ds.pop()
+        fun(index + 1, ds)
+    fun(0, [])
+    for it in res:
+        ans.append(list(it))
+    return ans
+
+# optimal:
+def recursi(indx,arr,final,op):
+    final.append(list(op))
+    for i in range(indx,len(arr)):
+        if i>indx and arr[i]==arr[i-1]:
+            continue
+        op.append(arr[i])
+        final=recursi(i+1,arr,final,op)
+        op.remove(arr[i])
+    return final
+
+def subsetsWithDup(nums):
+    # write the code  logic here !!! 
+    final=[]
+    op=[]
+    fin=recursi(0,nums,final,op)
+    return fin
+nums=[12,15,20]
+print(subsetsWithDup(nums))
