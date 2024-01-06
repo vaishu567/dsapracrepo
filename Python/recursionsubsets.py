@@ -327,3 +327,104 @@ def subsetsWithDup(nums):
     return fin
 nums=[12,15,20]
 print(subsetsWithDup(nums))
+
+
+# combinationsum-III:
+def recursive(arr,final,n,op,k):
+    if len(arr)==0:
+        if sum(op)==n and len(op)==k:
+            final.append(list(op))
+        return final
+    # taking:
+    op.append(arr[0])
+    final=recursive(arr[1:],final,n,op,k)
+    op.remove(arr[0])
+    final=recursive(arr[1:],final,n,op,k)
+    return final
+arr=[1,2,3,4,5,6,7,8,9]
+n=5
+k=2
+final=[]
+op=[]
+print(recursive(arr,final,n,op,k))
+
+
+
+# def binary(n,s):
+#     if n == 0:
+#         return s
+#     rem=n%2
+#     s.append(rem)
+#     n=n//2
+#     s=binary(n,s)
+#     return s
+# n=4
+# s=[]
+# print(binary(n,s))
+
+# permutations:
+# approach-1
+def helper(self,arr,final,freq,op):
+    if len(op)==len(arr):
+        final.append(list(op))
+        return final
+    for i in range(0,len(arr)):
+        if freq[i]==False:
+            freq[i]=True
+            op.append(arr[i])
+            final=self.helper(arr,final,freq,op)
+            op.remove(arr[i])
+            freq[i]=False
+    return final
+
+def permute(self, nums: List[int]) -> List[List[int]]:
+    freq=[False for i in range(len(nums))]
+    final=[]
+    op=[]
+    fin=self.helper(nums,final,freq,op)
+    return fin
+# approach-2:
+def swapf(i,j,arr):
+    arr[i],arr[j] = arr[j],arr[i]
+    return arr
+def permutations(index,nums,final,op):
+    if index==len(nums):
+        op=nums
+        final.append(list(op))
+        return final
+    for i in range(index,len(nums)):
+        nums=swapf(i,index,nums)
+        final=permutations(index+1,nums,final,op)
+        nums=swapf(i,index,nums)
+    return final
+final=[]
+op=[]
+nums=[1,2,3]
+print(permutations(0,nums,final,op))
+
+    
+# partition palindrome:
+def ispalindrome(self,s,i,j):
+    while i<j:
+        if s[i]!=s[j]:
+            return False
+        i+=1
+        j-=1
+    return True
+        
+def partitionhelper(self,s,index,final,op):
+    if index==len(s):
+        final.append(list(op))
+        return final
+    for i in range(index,len(s)):
+        if self.ispalindrome(s,index,i):
+            op.append(s[index:i+1])
+            final=self.partitionhelper(s,i+1,final,op)
+            op.pop()
+    return final
+def partition(self, s):
+    final=[]
+    op=[]
+    fin=self.partitionhelper(s,0,final,op)
+    return fin
+

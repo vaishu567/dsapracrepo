@@ -1,18 +1,17 @@
-def recursi(indx,arr,final,op):
-    final.append(list(op))
-    for i in range(indx,len(arr)):
-        if i>indx and arr[i]==arr[i-1]:
-            continue
-        op.append(arr[i])
-        final=recursi(i+1,arr,final,op)
-        op.remove(arr[i])
+def swapf(i,j,arr):
+    arr[i],arr[j] = arr[j],arr[i]
+    return arr
+def permutations(index,nums,final,op):
+    if index==len(nums):
+        op=nums
+        final.append(list(op))
+        return final
+    for i in range(index,len(nums)):
+        nums=swapf(i,index,nums)
+        final=permutations(index+1,nums,final,op)
+        nums=swapf(i,index,nums)
     return final
-
-def subsetsWithDup(nums):
-    # write the code  logic here !!! 
-    final=[]
-    op=[]
-    fin=recursi(0,nums,final,op)
-    return fin
-nums=[12,15,20]
-print(subsetsWithDup(nums))
+final=[]
+op=[]
+nums=[1,2,3]
+print(permutations(0,nums,final,op))
