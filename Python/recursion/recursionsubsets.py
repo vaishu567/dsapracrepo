@@ -404,7 +404,7 @@ print(permutations(0,nums,final,op))
 
     
 # partition palindrome:
-def ispalindrome(self,s,i,j):
+def ispalindrome(s,i,j):
     while i<j:
         if s[i]!=s[j]:
             return False
@@ -412,19 +412,51 @@ def ispalindrome(self,s,i,j):
         j-=1
     return True
         
-def partitionhelper(self,s,index,final,op):
+def partitionhelper(s,index,final,op):
     if index==len(s):
         final.append(list(op))
         return final
     for i in range(index,len(s)):
-        if self.ispalindrome(s,index,i):
+        if ispalindrome(s,index,i):
             op.append(s[index:i+1])
-            final=self.partitionhelper(s,i+1,final,op)
+            print("before op",op)
+            final=partitionhelper(s,i+1,final,op)
             op.pop()
+            print("after op",op)
     return final
-def partition(self, s):
+def partition(s):
     final=[]
     op=[]
-    fin=self.partitionhelper(s,0,final,op)
+    fin=partitionhelper(s,0,final,op)
     return fin
+s="aabb"
+print(partition(s))
+
+
+# count increasing subsequences:
+
+def recursive(arr,op,final):
+    if len(arr)==0:
+        final.append(list(op))
+        return final
+    if len(op)==0 or arr[0]>op[-1]:
+        op.append(arr[0])
+        final=recursive(arr[1:],op,final)
+        op.remove(arr[0])
+    final=recursive(arr[1:],op,final)
+    return final
+    
+def countSub( arr, n):
+    # Your code goes here
+    final=[]
+    op=[]
+    fin=recursive(arr,op,final)
+    count=len(fin)-1
+    return count
+arr=[1,2,3,4]
+n=len(arr)
+print(countSub(arr, n))
+
+
+print(1000%20)
 
