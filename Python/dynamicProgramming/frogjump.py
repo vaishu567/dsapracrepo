@@ -51,7 +51,27 @@ print(tabulation(len(heights)-1,heights,left,right,dp))
 
 
 
-
+# if in question its like index-1 or index-2 then ther's alwasys be a space optimization technique-Thumb rule:
+# space optimization:
+def frogJump(n, heights):
+    # Write your code here.
+    right=float('inf')
+    left=float('inf')
+    prev=0
+    prev2=0
+    for i in range(1,n):
+        left=prev+abs(heights[i]-heights[i-1])
+        if i>1:
+            right=prev2+abs(heights[i]-heights[i-2])
+        curr=min(right,left)
+        prev2=prev
+        prev=curr
+    return prev
+heights=[30,10,60,10,60,50]
+left=float('inf')
+right=float('inf')
+n=len(heights)
+print(frogJump(n,heights))
 
 
 

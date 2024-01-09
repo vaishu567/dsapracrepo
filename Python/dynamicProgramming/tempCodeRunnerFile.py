@@ -1,13 +1,18 @@
-def tabulation(index,heights,left,right,dp):
+def dpmemoization(index,k,heights,minj,jump,dp):
     dp[0]=0
-    for i in range(1,len(heights)):
-        left= dp[i-1]+abs(heights[i]-heights[i-1])
-        if i>1:
-            right= dp[i-2]+abs(heights[i]-heights[i-2])
-        dp[i]=min(left,right)
+    if dp[index]!=-1:
+        return dp[index]
+    for j in range(1,k+1):
+        if index-j>=0:
+            jump=dpmemoization(index-j,k,heights,minj,jump,dp)+abs(heights[index]-heights[index-j])
+            minj=min(minj,jump)
+            dp[index]=minj
     return dp[index]
-heights=[30,10,60,10,60,50]
-left=float('inf')
-right=float('inf')
-dp=[-1 for i in range(len(heights))]
-print(tabulation(len(heights)-1,heights,left,right,dp))
+heights=[10,40,50,20,60]
+k=3
+n=5
+index=n-1
+minj=float('inf')
+jump=float('inf')
+dp=[-1 for i in range(n+1)]
+print(dpmemoization(index,k,heights,minj,jump,dp))
