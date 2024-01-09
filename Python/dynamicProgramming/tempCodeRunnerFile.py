@@ -1,18 +1,13 @@
-def dpmemoization(index,k,heights,minj,jump,dp):
-    dp[0]=0
-    if dp[index]!=-1:
-        return dp[index]
-    for j in range(1,k+1):
-        if index-j>=0:
-            jump=dpmemoization(index-j,k,heights,minj,jump,dp)+abs(heights[index]-heights[index-j])
-            minj=min(minj,jump)
-            dp[index]=minj
-    return dp[index]
-heights=[10,40,50,20,60]
-k=3
-n=5
-index=n-1
-minj=float('inf')
-jump=float('inf')
-dp=[-1 for i in range(n+1)]
-print(dpmemoization(index,k,heights,minj,jump,dp))
+def maximumNonAdjacentSum(nums):    
+    # Write your code here.
+    dp=[-1 for i in range(len(nums)+3)]
+    dp[len(nums)]=0
+    dp[len(nums)+1]=0
+    dp[len(nums)+2]=0
+    for i in range(len(nums)-1,-1,-1):
+        pick=arr[i]+ dp[i+2]
+        notpick=0+dp[i+1]
+        dp[i]=max(notpick,pick)
+    return dp[0]
+arr=[2,1,4,9]
+print(maximumNonAdjacentSum(arr))
