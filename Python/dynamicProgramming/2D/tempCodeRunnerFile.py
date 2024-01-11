@@ -1,18 +1,22 @@
-# maximum points ninja can earn:
-def recursive(arr,day,last):
-    if day==0:
-        maxi=0
-        for i in range(0,3):
-            if i!=last:
-                maxi=max(maxi,arr[0][i])
-        return maxi
-    maxi=0
-    for i in range(0,3):
-        if i!=last:
-            points=arr[day][i]+recursive(arr,day-1,i)
-            maxi=max(maxi,points)
-    return maxi
-arr=[[10,50,1],[9,100,7]]
-day=len(arr)-1
-last=len(arr[0])
-print(recursive(arr,day,last))
+def memoization(right,down,row,col,n,m,dp):
+    if row==n-1 and col==m-1:
+        return 1
+    if col>m-1 or row>n-1:
+        return 0
+    if dp[row][col]!=-1:
+        return dp[row][col]
+    right=memoization(right,down,row,col+1,n,m,dp)
+    down=memoization(right,down,row+1,col,n,m,dp)
+    dp[row][col]=right+down
+    return dp[row][col]
+
+
+n=1
+m=6
+dp=[[-1 for _ in range(m)] for _ in range(n)]
+print(dp)
+right=0
+down=0
+col=0
+row=0
+print(memoization(right,down,row,col,n,m,dp))
