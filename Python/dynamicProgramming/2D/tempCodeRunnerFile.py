@@ -1,22 +1,19 @@
-def memoization(right,down,row,col,n,m,dp):
-    if row==n-1 and col==m-1:
-        return 1
-    if col>m-1 or row>n-1:
-        return 0
-    if dp[row][col]!=-1:
-        return dp[row][col]
-    right=memoization(right,down,row,col+1,n,m,dp)
-    down=memoization(right,down,row+1,col,n,m,dp)
-    dp[row][col]=right+down
-    return dp[row][col]
-
-
-n=1
-m=6
-dp=[[-1 for _ in range(m)] for _ in range(n)]
-print(dp)
-right=0
-down=0
-col=0
-row=0
-print(memoization(right,down,row,col,n,m,dp))
+def tabulation(mat,n,m):
+    dp=[[0 for _ in range(m+1)]for _ in range(n+1)]
+    for row in range(n-1,-1,-1):
+        for col in range(m-1,-1,-1):
+            if row==n-1 and col==m-1:
+                if mat[row][col]!=-1:
+                    dp[n-1][m-1]=1
+            else:
+                if mat[row][col]!=-1:
+                # right=memoization(mat,right,down,row,col+1,n,m,dp)
+                    right=dp[row][col+1]
+                # down=memoization(mat,right,down,row+1,col,n,m,dp)
+                    down=dp[row+1][col]
+                    dp[row][col]=right+down
+    return dp[0][0]
+mat=[[2,2,0],[2,-1,1],[2,2,0]]
+n=len(mat)
+m=len(mat[0])
+print(tabulation(mat,n,m))
