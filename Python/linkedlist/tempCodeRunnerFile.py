@@ -36,16 +36,4 @@ def takeInput():
                 curr=curr.next
             curr.next=newNode
     return head
-
-# we want to print linkedlist like this 1->2->3->4->5->6->None
-# we are going to implement printLL(head) and pass head as a parameter
-def printLL(head):
-    while head is not None:
-        print(str(head.data) + "->", end="")
-        head=head.next
-    print("None")
-    return 
-
 head=takeInput()
-printLL(head)
-
