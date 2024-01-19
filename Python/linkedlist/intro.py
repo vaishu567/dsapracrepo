@@ -48,4 +48,6 @@ def printLL(head):
 
 head=takeInput()
 printLL(head)
+printLL(head)
+
 
