@@ -1,12 +1,13 @@
 def subsetk(arr,k):
     n=len(arr)
-    dp=[[0 for i in range(k+1)] for i in range(n)]
+    dp=[[False for i in range(k+1)] for i in range(n)]
     for i in range(n):
         dp[i][0]=True
-    dp[0][arr[0]]=True
+    if arr[0]<=k:
+        dp[0][arr[0]]=True
     # return dp
     for index in range(1,n):
-        for target in range(1,k):
+        for target in range(1,k+1):
             nottake=dp[index-1][target]
             take=False
             if target>=arr[index]:

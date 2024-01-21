@@ -39,6 +39,8 @@ print(subsetk(arr,n-1,k))
 
 
 # boolean memoization:
+# T.C=O(N*target)
+# S.C=O(N*target)+O(N)
 def subsetk(arr,index,target,dp):
     if target==0:
         return True
