@@ -1,19 +1,23 @@
-def subsetk(arr,k):
-    n=len(arr)
-    dp=[[False for i in range(k+1)] for i in range(n)]
-    for i in range(n):
-        dp[i][0]=True
-    if arr[0]<=k:
-        dp[0][arr[0]]=True
-    # return dp
-    for index in range(1,n):
-        for target in range(1,k+1):
-            nottake=dp[index-1][target]
-            take=False
-            if target>=arr[index]:
-                take=dp[index-1][target-arr[index]]
-            dp[index][target]=(take or nottake)
-    return dp[index][target]
-arr=[1,2,3,1]
-k=4
-print(subsetk(arr,k))
+def countSubsetsk(arr,k,index):
+    if k==0:
+        return 1
+    if index==len(arr):
+        if k==0:
+            return 1
+        else:
+            return 0     
+    if dp[index][k]!=-1:
+        return dp[index][k]
+    nottake=countSubsetsk(arr,k,index+1)
+    take=0
+    if arr[index]<=k:
+        take=countSubsetsk(arr,k-arr[index],index+1)
+    dp[index][k]=take+nottake
+    return dp[index][k]
+
+
+
+arr=[1,4,4,5]
+k=5
+dp=[[-1 for _ in range(k+1)] for _ in range(len(arr))]
+print(countSubsetsk(arr,k,0))
