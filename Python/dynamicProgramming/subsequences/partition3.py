@@ -1,3 +1,37 @@
+
+# memoization:
+def countSubsetsk(arr,k,index,dp):
+    if index==len(arr):
+        if k==0:
+            return 1
+        else:
+            return 0     
+    if dp[index][k]!=-1:
+        return dp[index][k]
+    nottake=countSubsetsk(arr,k,index+1,dp)
+    take=0
+    if arr[index]<=k:
+        take=countSubsetsk(arr,k-arr[index],index+1,dp)
+    dp[index][k]=take+nottake
+    return dp[index][k]
+
+def countPartitions(n, d, arr):
+    # write your code here
+    totalsum=sum(arr)
+    k=(totalsum+d)
+    dp=[[-1 for _ in range(k+1)] for _ in range(n)]
+    if k%2==0:
+        count=countSubsetsk(arr,k//2,0,dp)
+        return count
+    else:
+        return 0
+arr=[1,1,1,1]
+n=len(arr)
+d=0
+print(countPartitions(n,d,arr))
+
+
+# tabulation:
 def countSubsetsk(arr,k):
     n=len(arr)
     dp=[[0 for _ in range(k+1)] for _ in range(n)]
