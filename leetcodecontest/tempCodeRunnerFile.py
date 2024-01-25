@@ -1,13 +1,14 @@
-def recursivefun(arr,index,op,final):
-    if index==len(arr):
-        final.append(list(op))
-        return final
-    op.append(arr[index])
-    final=recursivefun(arr,index+1,op,final)
-    op.remove(arr[index])
-    final=recursivefun(arr,index+1,op,final)
-    # print(take,nottake)
-    return final
-arr = [1,2,3,12]
-index=0
-print(recursivefun(arr,index,[],[]))
+recursive(arr,ind,temp,n):
+    if ind==n:
+        print(temp)
+        return len(temp)
+    include=float('-inf')
+    if havedup(temp,arr[ind]):
+        exclude=recursive(arr,ind+1,temp,n)
+    else:
+        exclude=recursive(arr,ind+1,temp,n)
+        include=recursive(arr,ind+1,temp+arr[ind],n)
+    return max(include,exclude)
+
+arr = ["un","iq","ue"]
+print(recursive(arr,0,"",len(arr)))
