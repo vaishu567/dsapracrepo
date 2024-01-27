@@ -1,19 +1,27 @@
-def knapsackrecur(wt,val,W,n):
-    # if W==0 or ind==n:
-    #     return 0
-    dp=[[0 for i in range(W+1)] for j in range(n)]
-    take=0
-    for i in range(n):
-        dp[i][0]=0
-    for i in range(n):
-        for j in range(1,W+1):
-            if wt[i]<=j:
-                take= val[i]+dp[i-1][j-wt[i]]
+def minimumElements(num,x):
+    # if index==0:
+    #     if x%num[index]==0:
+    #         return x//num[index]
+    #     else:
+    #         return 1e9
+    n=len(num)
+    dp=[[-1 for _ in range(x+1)] for _ in range(n)]
+    for i in range(x+1):
+        if i%num[0]==0:
+            dp[0][i]=i//num[0]
+        else:
+            dp[0][i]=1e9
+    # print(dp)
+    for i in range(1,n):
+        for j in range(x+1):
             nottake=0+dp[i-1][j]
-            dp[i][j]= max(take,nottake)
-    return dp[n-1][W]
-wt=[1,2,4,5]
-n=len(wt)
-val=[5,4,8,6]
-W=5
-print(knapsackrecur(wt,val,W,n))
+            take=float('inf')
+            if num[i]<=j:
+                take=1+dp[i][j-num[i]]
+            # print(take,nottake)
+            dp[i][j]=min(take,nottake)
+    print(dp)
+    return dp[n-1][x]
+num=[1,2,3]
+x=7
+print(minimumElements(num,x))
