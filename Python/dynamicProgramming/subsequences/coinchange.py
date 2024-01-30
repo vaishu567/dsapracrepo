@@ -1,12 +1,6 @@
 def countWaysToMakeChange(arr,value,index) :
     if index== 0:
         return 1 if value % arr[0] == 0 else 0
-        # if arr[0]==value:
-        #     return 2
-        # elif value==0:
-        #     return 1
-        # else:
-        #     return 0
     nottake=countWaysToMakeChange(arr,value,index-1)
     take=0
     if arr[index]<=value:
