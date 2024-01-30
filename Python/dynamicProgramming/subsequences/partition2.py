@@ -16,23 +16,6 @@ def partition2(arr,k):
     return dp
     # this is target tabulation code:
     # now the actual problem:
-def partition2neg(arr,k):
-    # dp=[[False for i in range(k+1)] for j in range(len(arr))]
-    dpd={}
-    for i in range(len(arr)):
-        dp[i][0]=True
-    if arr[0]<=k:
-        dp[0][arr[0]]=True
-    for i in range(1,len(arr)):
-        for target in range(1,k+1):
-            nottake=dp[i-1][target]
-            take=False
-            if arr[i]<=target:
-                take=dp[i-1][target-arr[i]]
-            dp[i][target]=(take or nottake)
-    return dp
-
-
 def actual(arr,n):
     totalsum=sum(arr)
     if totalsum>0:
