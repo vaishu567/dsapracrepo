@@ -26,7 +26,7 @@ def shortestSupersequence(s1,s2):
     n=len(s1)
     m=len(s2)
     k=n+m
-    dp=[[-1 for i in range(m+1)] for j in range(n+1)]
+    dp=[[-1 for _ in range(m+1)] for _ in range(n+1)]
     for i in range(n+1):
         dp[i][0]=0
     for j in range(m+1):
@@ -59,9 +59,8 @@ def shortestSupersequence(s1,s2):
         s+=s2[j-1]
         j-=1
     return s[::-1]
-
-s1="brute"
-s2="groot"
+s1="dingdingdingding"
+s2="ing"
 print(shortestSupersequence(s1,s2))
 
 

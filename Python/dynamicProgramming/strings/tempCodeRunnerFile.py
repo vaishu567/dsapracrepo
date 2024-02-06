@@ -1,31 +1,21 @@
+def distinctSub(s,sub,i,j,dp):
+    if j<0:
+        return 1
+    if i<0:
+        return 0
+    if dp[i][j]!=-1:
+        return dp[i][j]
+    if s[i]==sub[j]:
+        dp[i][j]=distinctSub(s,sub,i-1,j-1,dp)+distinctSub(s,sub,i-1,j,dp)
+        return dp[i][j]
 
-def purple(s: str) -> bool:
-    # Write your code here.
-    n=len(s)
-    countB=0
-    countR=0
-    i=0
-    j=0
-    while i<n and j<n:
-        if s[j]=="R":
-            countR+=1
-            print(countB,countR)
-
-        elif s[j]=="B":
-            countB+=1
-            print(countB,countR)
-
-        if countR==countB:
-            print(countB,countR)
-            return True
-        elif countB>countR or countR>countB and countR>0 and countB>0:
-            if s[i]=="B":
-                countB-=1
-            else:
-                countR-=1
-            i+=1
-        j+=1
-    return False
-
-s="BRRBBB"
-print(purple(s))
+    else:
+        dp[i][j]=distinctSub(s,sub,i-1,j,dp)
+        return dp[i][j]
+    
+s= "brootgroot"
+sub= "brt"
+n=len(s)
+m=len(sub)
+dp=[[-1 for _ in range(m+1)] for _ in range(n+1)]
+print(distinctSub(s,sub,n-1,m-1,dp))  
