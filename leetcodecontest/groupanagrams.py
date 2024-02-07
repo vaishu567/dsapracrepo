@@ -6,7 +6,7 @@
 # O(n∗k)O(n*k)O(n∗k)
 # (K is the length of the longest string)
 
-def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+def groupAnagrams(strs):
     n=len(strs)
     d={}
     for i in range(n):
