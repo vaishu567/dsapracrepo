@@ -38,22 +38,21 @@ print(bestTimeToBuyAndSell(values,len(values),0,1,dp))
 
 
 # tabulation:
-def bestTimeToBuyAndSell(values,n,ind,buy,dp):
-    if ind==n:
-        return 0
-    if dp[ind][buy]!=-1:
-        return dp[ind][buy]
-    if buy:
-        take=-values[ind]+bestTimeToBuyAndSell(values,n,ind+1,0,dp)
-        nottake=0+bestTimeToBuyAndSell(values,n,ind+1,1,dp)
-        dp[ind][buy] =max(take,nottake)
-        return dp[ind][buy]
-    else:
-        take=values[ind]+bestTimeToBuyAndSell(values,n,ind+1,1,dp)
-        nottake=0+bestTimeToBuyAndSell(values,n,ind+1,0,dp)
-        dp[ind][buy]=max(take,nottake)
-        return dp[ind][buy]
+def bestTimeToBuyAndSell(values):
+    n=len(values)
+    dp=[[0 for _ in range(2)] for _ in range(len(values)+1)]
+    dp[n][0]=dp[n][1]=0
+    for ind in range(n-1,-1,-1):
+        for buy in range(2):
+            if buy:
+                take=-values[ind]+dp[ind+1][0]
+                nottake=0+dp[ind+1][1]
+                dp[ind][buy] =max(take,nottake)
+            else:
+                take=values[ind]+dp[ind+1][1]
+                nottake=0+dp[ind+1][0]
+                dp[ind][buy]=max(take,nottake)
+    return dp[0][1]
     
 values=[1,2,3,4,5,6,7]
-dp=[[-1 for i in range(2)] for i in range(len(values))]
-print(bestTimeToBuyAndSell(values,len(values),0,1,dp))
+print(bestTimeToBuyAndSell(values))
