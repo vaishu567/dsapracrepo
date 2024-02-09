@@ -1,21 +1,18 @@
-def maxPro(prices,ind,buy,cap,dp):
-#     if cap==0:
-#         return 0
-#     if ind==len(prices):
-#         return 0
-#     if dp[ind][buy][cap]!=-1:
-#         return dp[ind][buy][cap]
-#     if buy:
-#         take=-prices[ind]+maxPro(prices,ind+1,0,cap,dp)
-#         nottake=0+maxPro(prices,ind+1,1,cap,dp)
-#         dp[ind][buy][cap]= max(nottake,take)
-#         return dp[ind][buy][cap]
-#     else:
-#         take=prices[ind]+maxPro(prices,ind+1,1,cap-1,dp)
-#         nottake=0+maxPro(prices,ind+1,0,cap,dp)
-#         dp[ind][buy][cap]= max(nottake,take)
-#         return dp[ind][buy][cap]
-# prices=[3,3,5,0,3,1,4]
-# dp=[[[-1  for i in range(3)] for i in range(2)]for i in range(len(prices))]
-# print(dp)
-# print(maxProfit(prices,0,1,2,dp))
+def largestsubset(nums,n,ind,op):
+    if ind==n:
+        return len(op)
+    # taking:
+    if len(op)!=0:
+        for i in op:
+            if nums[ind]%i==0 or i%nums[ind]==0: 
+                op.append(nums[ind])
+    else:
+        op.append(nums[ind])
+    take=largestsubset(nums,n,ind+1,op)
+    # nottaking:
+    op.remove(nums[ind])
+    nottake=largestsubset(nums,n,ind+1,op)
+    return max(len(take),len(nottake))
+nums=[1,2,3]
+n=len(nums)
+print(largestsubset(nums,n,0,[]))

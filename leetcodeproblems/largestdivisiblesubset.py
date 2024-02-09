@@ -1,20 +1,19 @@
-def largestsubset(nums,n,ind,op):
-    if ind==n:
-        return len(op)
-    # nottaking:
-    nottake=largestsubset(nums,n,ind+1,op)
-    # taking:
-    if len(op)!=0:
-        for i in op:
-            if nums[ind]%i==0 or i%nums[ind]==0: 
-                op.append(nums[ind])
-    else:
-        op.append(nums[ind])
-    take=largestsubset(nums,n,ind+1,op)
-    return max(take,nottake)
+def largestsubset(nums,n):
+    for i in range(n):
+        if len(ans)==0:
+            ans.append(nums[i])
+        else:
+            while k>=0:
+                if ans[k]%nums[i]==0 or nums[i]%ans[k]==0:
+                    i+=1
+                else:
+                    break
+            ans.append(nums[i])
+    return ans
 nums=[1,2,3]
 n=len(nums)
-print(largestsubset(nums,n,0,[]))
+print(largestsubset(nums,n))
+
 
 
 
