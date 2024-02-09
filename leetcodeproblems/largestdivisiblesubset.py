@@ -4,7 +4,7 @@ def largestsubset(nums,n,ind,op):
     # nottaking:
     nottake=largestsubset(nums,n,ind+1,op)
     # taking:
-    if op:
+    if len(op)!=0:
         for i in op:
             if nums[ind]%i==0 or i%nums[ind]==0: 
                 op.append(nums[ind])
