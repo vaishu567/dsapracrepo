@@ -1,17 +1,16 @@
-def perfectsquares(n,dp):
-    if n==0:
-        return 0
-    mini=float('inf')
-    if dp[n]!=-1:
-        return dp[n]
+def largestsubset(nums):
+    n=len(nums)
+    ans=[]
     for i in range(1,n):
-        if i*i<=n:
-            ps=i*i
-            ans=1+perfectsquares(n-ps,dp)
-            mini=min(mini,ans)
-        else:
-            break
-    dp[n]=mini
-    return dp[n]
-dp=[-1 for i in range(n)]
-print(perfectsquares(12,dp))
+        if len(ans)!=0:
+            for k in ans:
+                if k%nums[i]==0 or nums[i]%k==0:
+                    ans.append(nums[i])
+        if len(ans)==0:
+            if nums[i]%nums[i-1]==0 or nums[i-1]%nums[i]==0:
+                ans.append(nums[i-1])
+                ans.append(nums[i])
+
+    return ans
+nums=[1,2,3]
+print(largestsubset(nums))
