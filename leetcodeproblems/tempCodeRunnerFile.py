@@ -1,16 +1,14 @@
-def largestsubset(nums):
-    n=len(nums)
-    ans=[]
-    for i in range(1,n):
-        if len(ans)!=0:
-            for k in ans:
-                if k%nums[i]==0 or nums[i]%k==0:
-                    ans.append(nums[i])
-        if len(ans)==0:
-            if nums[i]%nums[i-1]==0 or nums[i-1]%nums[i]==0:
-                ans.append(nums[i-1])
-                ans.append(nums[i])
-
-    return ans
-nums=[1,2,3]
-print(largestsubset(nums))
+# recursive:
+def subarraymin(arr,ind,prev):
+    if ind==len(arr):
+        return 0
+    take=0
+    if take==0:
+        nottake=0+subarraymin(arr,ind+1,prev)
+    if take>=0:
+        if take==0:
+            prev=ind
+        take=min(arr[prev:ind+1])+subarraymin(arr,ind+1,prev)
+    return take+nottake
+arr=[3,1,2,4]
+print(subarraymin(arr,0,-1))

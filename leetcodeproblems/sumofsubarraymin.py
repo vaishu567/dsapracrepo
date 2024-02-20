@@ -15,21 +15,23 @@
 # Input: arr = [11,81,94,43,3]
 # Output: 444
  
-# recursive:
-def subminssum(arr,index,op):
-    if index==len(arr):
-        if op:
-            print(op)
-            return min(op)
-        else:
-            return 0
-    op.append(arr[index])
-    sumpick=subminssum(arr,index+1,op)
-    op.remove(arr[index])
-    sumnot=subminssum(arr,index+1,op)
-    return sumnot+sumpick
-
-
+# bruteforce:
+def subarraymin(arr):
+    # op=[]
+    sumi=0
+    for i in range(len(arr)):
+        sumi+=arr[i]
+        for j in range(i+1,len(arr)):
+            sumi+=min(arr[i:j+1])
+    return sumi
 arr=[3,1,2,4]
 # print(min(arr))
-print(subminssum(arr,0,[]))
+print(subarraymin(arr))
+
+
+# recursive:
+# def subarraymin(arr,ind,prev,take,nottake):
+
+# arr=[3,1,2,4]
+# print(subarraymin(arr,0,-1,0,0))
+
