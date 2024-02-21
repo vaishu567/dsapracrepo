@@ -6,9 +6,9 @@ def bfs(adj,n):
     to_visit=[start]
     visited.add(start)
     while to_visit:
-        vertex=to_visit.pop(0)
-        bfsa.append(vertex)
-        for neighbor in adj[vertex]:
+        node=to_visit.pop(0)
+        bfsa.append(node)
+        for neighbor in adj[node]:
             if neighbor not in visited:
                 to_visit.append(neighbor)
                 visited.add(neighbor)
