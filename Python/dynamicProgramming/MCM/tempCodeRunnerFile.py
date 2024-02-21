@@ -1,17 +1,10 @@
-def main(n,cuts,c):
-    new=[0]+cuts+[n]
-    new.sort()
-    dp=[[0 for i in range(c+2)]for i in range(c+2)]
-    for i in range(c,0,-1):
-        for j in range(1,c+1):
-            if i>j:
-                continue
-            mini=float('inf')
-            for k in range(i,j+1):
-                costs=(cuts[j+1]-cuts[i-1])+(dp[i][k-1]+dp[k+1][j])
-                mini=min(mini,costs)
-            dp[i][j] =mini
-    return dp[1][c]
-cuts=[1,3]
-n=4
-print(main(n,cuts,2))
+def mcm(arr,i,j,mini):
+    if i==j:
+        return 0
+    for k in range(i,j):
+        steps=arr[i-1]*arr[k]*arr[j]+(mcm(arr,i,k,mini)+mcm(arr,k+1,j,mini))
+        mini=min(mini,steps)
+    return mini
+arr=[10,15,20,25]
+n=len(arr)
+print(mcm(arr,1,n-1,float('inf')))
