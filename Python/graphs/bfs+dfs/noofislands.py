@@ -29,14 +29,6 @@ grid=[[0,1,1,0],[0,1,1,0],[0,0,1,0],[0,0,0,0],[1,1,0,1]]
 # grid=[[0,1,1,1,0,0,0],[0,0,1,1,0,1,0]]
 print(numofisl(grid))
 
-        
-    # vis[node]=1
-    # dfsa.append(node)
-    # for neighbour in adj[node]:
-    #     if vis[neighbour]!=1:
-    #         dfsa=dfs(neighbour,adj,vis,dfsa)
-    # return dfsa
-# //////////no of islands using dfs:
 def dfsonmatrix(mat,i,j,vis,n,m):
     vis[i][j]=1
     for delrow in range(-1,2):
