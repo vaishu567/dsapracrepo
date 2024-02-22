@@ -29,6 +29,32 @@ vis=[[0 for i in range(m)]for i in range(n)]
 print(floodfill(x,y,mat,p,n,m,inp,vis))
 
 
+# def floodFill(mat: List[List[int]], n: int, m: int, x: int, y: int, p: int) -> List[List[int]]:
+#     # write your code here
+#     if mat[x][y]==p:
+#         return mat
+#     inp=mat[x][y]
+#     vis=[[0 for i in range(m)]for i in range(n)]
+#     vis[x][y]=1
+#     to_visit=[(x,y)]
+#     mat[x][y]=p
+#     while to_visit:
+#         row,col=to_visit.pop(0)
+#         delta=[-1,1]
+#         for i in delta:
+#             delrow=row+i
+#             delcol=col+i
+#             if 0<=delrow<n and mat[delrow][col]==inp and vis[delrow][col]!=1:
+#                 to_visit.append((delrow,col))
+#                 vis[delrow][col]=1
+#                 mat[delrow][col]=p
+#             if 0<=delcol<m and mat[row][delcol]==inp and vis[row][delcol]!=1:
+#                 to_visit.append((row,delcol))
+#                 vis[row][delcol]=1
+#                 mat[row][delcol]=p
+#     return mat
+
+
 # T.C:
 # if n*m=x in worst case if they are all equal then for every node we check 4 directions so:
 # T.C=O(x*4)
