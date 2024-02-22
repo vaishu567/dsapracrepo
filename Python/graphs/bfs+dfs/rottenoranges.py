@@ -1,4 +1,4 @@
-
+# to solve this we should use bfs only becoz if we use dfs it does depth wise search and returns maximum time but here we want max(min(time))
 def rottenoranges(grid, n, m):
     time=-1
     to_visit=[]
