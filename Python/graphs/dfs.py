@@ -26,7 +26,7 @@ def dfsadjmat(adjmat,n,m):
     adjarr=[[]for i in range(n+1)]
     for i in range(n):
         for j in range(m+1):
-            if adjmat[i][j]==1:
+            if adjmat[i][j]==1 and i!=j:
                 adjarr[i].append(j)
     vis=[0]*n
     start=0
