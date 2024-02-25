@@ -65,10 +65,10 @@ def bipartitebooldfs(n,start,c,graph,color):
     for neighbour in graph[start]:
         if color[neighbour]==-1:
             if c==0:
-                if self.bipartitebooldfs(n,neighbour,1,graph,color)==False:
+                if bipartitebooldfs(n,neighbour,1,graph,color)==False:
                     return False
             else:
-                if self.bipartitebooldfs(n,neighbour,0,graph,color)==False:
+                if bipartitebooldfs(n,neighbour,0,graph,color)==False:
                     return False
         elif color[neighbour]==c:
             return False
