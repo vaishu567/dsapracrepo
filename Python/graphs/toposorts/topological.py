@@ -23,3 +23,7 @@ def topologicalsort(adj,n):
 adj=[[2,4],[2],[],[1],[]]
 n=5
 print(topologicalsort(adj,n))
+
+
+# topological sort using bfs:
+# kahn's algo:
