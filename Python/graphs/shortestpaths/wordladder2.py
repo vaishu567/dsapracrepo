@@ -12,6 +12,7 @@ def wordladder2(begin,end,worddict):
             level+=1
             for it in usedOnlevel:
                 s.discard(it)
+            usedOnlevel.clear()
         word=vec[-1]
         if word==end:
             if not ans:
