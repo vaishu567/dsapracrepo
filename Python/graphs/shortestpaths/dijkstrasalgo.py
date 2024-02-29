@@ -13,5 +13,8 @@ def dijkstrapq(adj,n,src):
                 dist[adjnode]=min(dist[adjnode],d+adjw)
                 heapq.heappush(minheap,(dist[adjnode],adjnode))
     return dist
-print(dijkstrapq(adj,n,src))
+# print(dijkstrapq(adj,n,src))
+
+
+
 
