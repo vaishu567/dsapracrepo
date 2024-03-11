@@ -52,3 +52,36 @@ if __name__ == '__main__':
 
 print(str(98))
 
+
+
+# bit++:
+def bitoperation(n, operations):
+    ans = 0
+    for i in range(n):
+        if operations[i] == "++X" or operations[i] == "X++":
+            ans += 1
+        elif operations[i] == "--X" or operations[i] == "X--":
+            ans -= 1
+    return ans
+ 
+if __name__ == "__main__":
+    n = int(input())
+    operations = [input() for _ in range(n)]  
+    print(bitoperation(n, operations))
+
+
+
+# next round:
+def nextround(n,k,participants):
+    count=0
+    for i in range(n):
+        if participants[i]>=participants[k-1] and participants[k-1]!=0:
+            count+=1
+        elif  participants[k-1]==0 and participants[i]>participants[k-1]:
+            count+=1
+
+    return count
+if __name__ == '__main__':
+    n,k=map(int,input().split())
+    array=list(map(int,input().split()))
+    print(nextround(n,k,array))
