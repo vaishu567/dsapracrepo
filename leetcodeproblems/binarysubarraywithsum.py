@@ -1,6 +1,7 @@
 def recursub(array,goal,ind,n,op):
     if ind==n:
         if sum(op)==goal:
+            print(op)
             return 1
         return 0
     # take:
