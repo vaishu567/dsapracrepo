@@ -87,8 +87,3 @@ print(sumOfBeauty("hello"))
 
 
 
-
-
-
-
-
