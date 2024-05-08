@@ -87,3 +87,30 @@ print(sumOfBeauty("hello"))
 
 
 
+
+
+
+
+
+# def example(n):
+
+#     # 1 2 3 4 5 6 1 2 3 4 5 6 1 2 3 4 5 6
+#     # 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+#     # 2 4 6 3
+#     # 2 4 3
+#     arr=[i+1 for i in range(n)]
+#     new=arr+arr+arr
+#     print(new)
+#     j=1
+#     l=[]
+#     while j<3*n:
+#         if new[j] not in l:
+#             l.append(new[j])
+#             j+=2
+#         else:
+#             j+=1
+#             if new[j] not in l:
+#                 l.append(new[j])
+#             j+=2
+#     return l
+# print(example(6))
