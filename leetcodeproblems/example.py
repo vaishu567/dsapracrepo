@@ -40,4 +40,3 @@ print(findRelativeRanks(score))
 
 
 
-
