@@ -113,7 +113,7 @@ def length(head):
     while curr.next is not None:
         curr=curr.next
         count+=1
-    return [count+1,curr]
+    return curr
 
 
 # head = inputOPLL()
@@ -171,8 +171,7 @@ def lastNtoFirst(n,head):
     tail.next=head
     printLL(h2)
     return h2
-head = inputOPLL()
-print(lastNtoFirst(6,head))
+
     
         
 
@@ -180,11 +179,51 @@ print(lastNtoFirst(6,head))
 
 
 
+# reverse ll:
+def reverseLL(head):
+    n,tail=length(head)
+    temptail=tail
+    for i in range(n):
+        curr = head
+        for j in range(n-i-1):
+            curr=curr.next
+        temptail.next=curr
+        temptail=curr
+    head.next=None
+    printLL(tail)
+    return tail
 
-        
 
-        
+# 1->2->3->4->5->None
+# reversell optimised:
+# T.C=O(N^2)
+def recursionreverseLL(head):
+    if head.next is None:
+        return head
+    sub=recursionreverseLL(head.next)
+    tail=length(sub)
+    tail.next=head
+    head.next = None
+    return sub
 
+
+head = inputOPLL()
+printLL(recursionreverseLL(head))
+
+# T.C=O(N)
+def recursionreverseLL2(head):
+    if head.next is None:
+        return head, head
+    sub, tail = recursionreverseLL(head.next)
+    head.next = None
+    tail.next = head
+    tail = head
+    return sub, tail
+
+
+head = inputOPLL()
+fin, tail = (recursionreverseLL(head))
+printLL(fin)
 
 
 
